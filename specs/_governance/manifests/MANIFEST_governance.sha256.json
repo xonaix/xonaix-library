@@ -23,14 +23,14 @@
     },
     {
       "path": "specs/_governance/LIBRARY_STANDARD_HEADER_CONTRACT.md",
-      "sha256": "71e0487eddfb6f78b1b1055f54b0a83324adce038bbb0ca79d7a40330d2d5ba8",
-      "size": 3413,
+      "sha256": "250c4349e734c45441637097969d7ed21cd0295eaaad9eedfe42522e0ddd8a00",
+      "size": 3510,
       "type": "file"
     },
     {
       "path": "specs/_governance/NO_DEBT_RULES.md",
-      "sha256": "eafd058f277d949bc10dae28ec66f3bd698212f2f39132a2dc9fdaf70248ff00",
-      "size": 3986,
+      "sha256": "b6c19ae959db35261cc0a525b938e49fd7b2727c14233b2ddeb91a50fe226994",
+      "size": 3991,
       "type": "file"
     },
     {
@@ -46,7 +46,7 @@
       "type": "file"
     }
   ],
-  "generated_at": "2025-12-31T07:16:36.945170+00:00",
+  "generated_at": "2025-12-31T18:48:58.890552+00:00",
   "generator": "tools/xonaix-library-tools",
   "manifest_version": "2.0.0"
 }
