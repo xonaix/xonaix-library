@@ -81,13 +81,11 @@ pub fn run(repo_root_arg: Option<String>) -> Result<(), DoctorError> {
 
     // Check 1: Required governance files exist
     println!("[1/5] Checking required governance files...");
+    // Only library-specific governance files required here.
+    // Org-wide governance lives in xonaix-specs.
     let required_files = [
-        "AUDIT_CONTRACT.md",
-        "NO_DEBT_RULES.md",
-        "DISTRIBUTION_EXCLUSIONS.md",
         "LIBRARY_SEALING_CONTRACT.md",
         "LIBRARY_STANDARD_HEADER_CONTRACT.md",
-        "XONAIX_SELF_GOVERNANCE_CONTRACT.md",
         "UNIT_REGISTRY.json",
     ];
 
