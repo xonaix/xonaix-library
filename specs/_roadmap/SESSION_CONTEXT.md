@@ -7,6 +7,10 @@
 3. Created _roadmap/ folder with governance specs
 4. Migrated 17 documents to v2.1
 5. CI is green
+6. Created GIT_WORKFLOW_CONTRACT.md
+7. Created CORTEX_GUARDIAN_SPEC.md
+8. Updated CLAUDE.md with PR workflow
+9. Set up branch protection on main
 
 ## Xonaix Vision: Trust Infrastructure
 
@@ -35,36 +39,69 @@ Xonaix Cortex analyzes commits and advises if something will cause harm:
 
 Future: OpenWRT refactored by Xonaix Code-Core and Forge as Rust
 
-## Git Workflow Decisions
+## Git Workflow - Phased Implementation
 
-### Agreed
-- PR-first workflow (no direct to main)
-- Human approval required by default
-- 1-time override only (explicit command in conversation)
-- Conventional Commits for messages
-- Squash merge to main
-- Branch protection enabled
+### Phase 1: Single-Party Workflow (Current)
+
+Branch protection active with:
+- PR required (no direct push to main)
+- CI must pass (build-tools, global-enforcement, test-tools)
+- Linear history (squash merge only)
+- No force pushes
+- No branch deletions
+- Review requirement: DISABLED (single-person workflow)
+
+Macman-1 (Founder) creates PRs, waits for CI, merges.
+
+### Phase 2: Two-Account Workflow (Next)
+
+When Xonaix Core account is set up:
+- **Xonaix-Core**: Claude submits PRs from this account
+- **Macman-1**: Reviews and approves PRs
+- Review requirement: RE-ENABLED
+
+This enables proper separation:
+- AI agent submits work
+- Human reviews and approves
+- Full audit trail of who did what
+
+### Phase 3: Multi-Party Workflow (Future)
+
+When team grows or customer engagements begin:
+- Multiple reviewers
 - CODEOWNERS file
+- Role-based approvals
+- See MULTI_PARTY_GOVERNANCE_SPEC.md
 
-### Override Mechanism
-Option A: Explicit command in conversation
-- Human says "Auto-merge this PR"
-- Agent merges when CI green
-- Command becomes part of audit trail
+## Branch Protection Rules (Phase 1)
 
-### Branch Protection Rules
-- Require PR to merge: Yes
-- Require 1 approval: Yes
-- Require status checks: Yes
-- Require linear history: Yes (squash only)
-- Require up-to-date branch: No (avoids friction)
-- Allow force push: No
-- Require signed commits: No (add with ZeroPoint later)
+| Rule | Setting |
+|------|---------|
+| Require PR to merge | Yes |
+| Require status checks | Yes (strict) |
+| Required checks | build-tools, global-enforcement, test-tools |
+| Require linear history | Yes |
+| Enforce admins | Yes |
+| Allow force push | No |
+| Allow deletions | No |
+| Require approving reviews | No (Phase 1 only) |
 
-## Next Steps
+## Account Strategy
 
-1. Create CORTEX_GUARDIAN_SPEC.md in _roadmap
-2. Create GIT_WORKFLOW_CONTRACT.md in _governance
-3. Update CLAUDE.md with new workflow
-4. Set up branch protection on xonaix-library
-5. Test the PR workflow
+| Account | Role | Purpose |
+|---------|------|---------|
+| Macman-1 | Founder | Reviews, approves, owns repos |
+| Xonaix-Core | AI Agent | Claude submits PRs from this account |
+
+This separation ensures:
+- Clear audit trail (human vs AI actions)
+- Proper review workflow (AI submits, human approves)
+- No self-approval issues
+- Scales to team workflow later
+
+## Governance Documents Created
+
+1. **GIT_WORKFLOW_CONTRACT.md** - Git workflow governance
+2. **CORTEX_GUARDIAN_SPEC.md** - AI commit analysis roadmap
+3. **MULTI_PARTY_GOVERNANCE_SPEC.md** - Future multi-party workflow
+4. **ZEROPOINT_INTEGRATION_SPEC.md** - Cryptographic ledger integration
