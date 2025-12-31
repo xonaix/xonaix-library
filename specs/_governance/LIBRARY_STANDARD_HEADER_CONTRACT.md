@@ -1,6 +1,6 @@
 ---
 schema: "xonaix-document-header"
-schema_version: "2.0"
+schema_version: "2.1"
 
 # --- Identity ---
 repo: "xonaix-library"
@@ -11,9 +11,9 @@ document_type: "contract"
 language: "en"
 
 # --- Version ---
-version: "XGOV-2.0.0"
+version: "XGOV-2.1.0"
 baseline: null
-status: "active"
+status: "approved"
 
 # --- Classification ---
 trust_class: null
@@ -57,13 +57,12 @@ constitutional_conformance:
 
 # --- Lifecycle ---
 created: "2025-12-31T00:00:00Z"
-last_updated: "2025-12-31T22:00:00Z"
+last_updated: "2025-12-31T23:30:00Z"
 ---
 
 # LIBRARY STANDARD HEADER CONTRACT
-
 **Scope:** All Xonaix repositories adopting the Universal Document Header
-**Schema Version:** 2.0
+**Schema Version:** 2.1
 
 ---
 
@@ -109,12 +108,12 @@ No content, comments, or whitespace may precede the header.
 
 The header MUST use YAML frontmatter delimited by triple dashes.
 
-### 4.1 Canonical Format (Schema v2.0)
+### 4.1 Canonical Format (Schema v2.1)
 
 ```yaml
 ---
 schema: "xonaix-document-header"
-schema_version: "2.0"
+schema_version: "2.1"
 
 # --- Identity ---
 repo: "{REPO_NAME}"
@@ -127,7 +126,7 @@ language: "en"
 # --- Version ---
 version: "{PREFIX}-{MAJOR}.{MINOR}.{PATCH}"
 baseline: "{XBASE-X.Y.Z | null}"
-status: "{draft | proposed | active | deprecated | superseded}"
+status: "{draft | internal_review | proposed | approved | sealed | deprecated | superseded}"
 
 # --- Classification ---
 trust_class: "{L0 | L1 | L2 | L3 | L4 | null}"
@@ -224,7 +223,7 @@ Customer-facing releases aggregate baselines:
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `schema` | string | YES | MUST be `"xonaix-document-header"` |
-| `schema_version` | string | YES | Schema version, currently `"2.0"` |
+| `schema_version` | string | YES | Schema version, currently `"2.1"` |
 
 ### 6.2 Identity Section
 
@@ -243,7 +242,7 @@ Customer-facing releases aggregate baselines:
 |-------|------|----------|-------------|
 | `version` | string | YES | Format: `{PREFIX}-MAJOR.MINOR.PATCH` |
 | `baseline` | string/null | YES | Baseline version this document belongs to |
-| `status` | enum | YES | One of: `draft`, `proposed`, `active`, `deprecated`, `superseded` |
+| `status` | enum | YES | One of: `draft`, `internal_review`, `proposed`, `approved`, `sealed`, `deprecated`, `superseded` |
 
 ### 6.4 Classification Section
 
@@ -335,15 +334,46 @@ Customer-facing releases aggregate baselines:
 
 ## 9. Status Lifecycle
 
-| Status | Description |
-|--------|-------------|
-| `draft` | Work in progress, not for reference |
-| `proposed` | Ready for review and approval |
-| `active` | Approved and authoritative |
-| `deprecated` | Still valid but being phased out |
-| `superseded` | Replaced by another document |
+Documents progress through a defined lifecycle:
 
-Deprecated standards remain authoritative unless explicitly superseded.
+| Status | Description | Integrity Requirement |
+|--------|-------------|----------------------|
+| `draft` | Work in progress, not for reference | None |
+| `internal_review` | Ready for internal team review | None |
+| `proposed` | Submitted for formal approval | None |
+| `approved` | Content locked, awaiting seal | Content hash computed |
+| `sealed` | Cryptographically signed and immutable | Signature required |
+| `deprecated` | Still valid but being phased out | Maintains seal |
+| `superseded` | Replaced by another document | Maintains seal |
+
+### 9.1 Status Transitions
+
+```
+draft -> internal_review -> proposed -> approved -> sealed -> deprecated -> superseded
+```
+
+- **draft -> internal_review**: Author submits for team review
+- **internal_review -> proposed**: Team approves for formal review
+- **proposed -> approved**: Formal approval granted, content locked
+- **approved -> sealed**: Cryptographic signature applied
+- **sealed -> deprecated**: Document marked for phase-out
+- **deprecated -> superseded**: Replacement document is sealed
+
+### 9.2 Integrity by Status
+
+| Status | hash_alg | content_hash | signature | CI Behavior |
+|--------|----------|--------------|-----------|-------------|
+| `draft` | null | null | null | Pass |
+| `internal_review` | null | null | null | Pass |
+| `proposed` | null | null | null | Pass |
+| `approved` | SHA3-512 | REQUIRED | null | Warn if missing hash |
+| `sealed` | SHA3-512 | REQUIRED | REQUIRED | Fail if missing sig |
+| `deprecated` | SHA3-512 | REQUIRED | REQUIRED | Verify integrity |
+| `superseded` | SHA3-512 | REQUIRED | REQUIRED | Verify integrity |
+
+### 9.3 Governance Debt
+
+Documents with `status: approved` but missing `content_hash` represent governance debt. CI will warn but not fail, allowing development to proceed while tracking unsigned documents.
 
 ---
 
@@ -397,6 +427,7 @@ Compliance with this contract is enforced by:
 - Doctor checks
 - Schema validation
 - Constitutional conformance verification
+- header-validate command
 
 Any deviation constitutes governance debt and MUST block sealing and release.
 
@@ -417,7 +448,22 @@ Documents using schema v1.0 MUST migrate to v2.0:
 
 ---
 
-## 15. Evolution
+## 15. Migration from v2.0
+
+Documents using schema v2.0 MUST migrate to v2.1:
+
+1. Update `schema_version` from `"2.0"` to `"2.1"`
+2. Update `status` values:
+   - `active` -> `approved` (content locked, awaiting signature)
+   - Or `active` -> `sealed` (if already signed)
+3. Compute `content_hash` for documents with status `approved` or higher
+4. Apply signature for documents with status `sealed`
+
+The v2.1 schema introduces a refined status lifecycle that separates content approval from cryptographic sealing.
+
+---
+
+## 16. Evolution
 
 Changes to this contract require:
 
@@ -431,7 +477,7 @@ Backward compatibility is not guaranteed.
 
 ---
 
-## 16. Final Assertion
+## 17. Final Assertion
 
 A document without a compliant header is not a valid Xonaix document.
 

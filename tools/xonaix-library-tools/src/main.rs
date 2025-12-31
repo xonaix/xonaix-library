@@ -8,6 +8,7 @@
 //! - unit-validate: Validate UNIT.json files against registry
 //! - graph-verify: Verify dependency graph integrity (DAG, no cycles)
 //! - doctor: Verify environment and library requirements
+//! - header-validate: Validate document headers against v2.1 schema
 
 use clap::{Parser, Subcommand};
 use std::process::ExitCode;
@@ -15,6 +16,7 @@ use std::process::ExitCode;
 mod doctor;
 mod enforce;
 mod manifest;
+mod header;
 mod unit;
 
 #[derive(Parser)]
@@ -86,6 +88,17 @@ enum Commands {
         #[arg(long)]
         repo_root: Option<String>,
     },
+
+    /// Validate document headers against v2.1 schema
+    HeaderValidate {
+        /// Repository root path (default: auto-detect)
+        #[arg(long)]
+        repo_root: Option<String>,
+
+        /// Specific file path to validate (default: all markdown files)
+        #[arg(long)]
+        file: Option<String>,
+    },
 }
 
 fn main() -> ExitCode {
@@ -131,6 +144,14 @@ fn main() -> ExitCode {
         },
 
         Commands::Doctor { repo_root } => match doctor::run(repo_root) {
+            Ok(()) => true,
+            Err(e) => {
+                eprintln!("ERROR: {e}");
+                false
+            }
+        },
+
+        Commands::HeaderValidate { repo_root, file } => match header::run(repo_root, file) {
             Ok(()) => true,
             Err(e) => {
                 eprintln!("ERROR: {e}");

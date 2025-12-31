@@ -41,7 +41,7 @@ Or if the binary is built:
 
 ## Document Header Schema
 
-All standards use the `xonaix-document-header` schema v1.0. See:
+All standards use the `xonaix-document-header` schema v2.1. See:
 - `specs/meta/language-template/TEMPLATE_LANGUAGE_STANDARD.md` - Master template
 - `specs/_governance/LIBRARY_STANDARD_HEADER_CONTRACT.md` - Official contract
 
@@ -115,11 +115,25 @@ tools/
 | L3 | Orchestration — Coordinates workflows |
 | L4 | Interface — UI/configuration, untrusted |
 
+## Status Lifecycle
+
+Documents progress through: draft -> internal_review -> proposed -> approved -> sealed -> deprecated -> superseded
+
+| Status | Description |
+|--------|-------------|
+| draft | Work in progress |
+| internal_review | Ready for team review |
+| proposed | Submitted for formal approval |
+| approved | Content locked, awaiting seal |
+| sealed | Cryptographically signed and immutable |
+| deprecated | Being phased out |
+| superseded | Replaced by another document |
+
 ## CI Pipeline
 
 The CI runs:
 1. `build-tools` - Compiles the Rust CLI
-2. `global-enforcement` - Runs all validation checks
+2. `global-enforcement` - Runs enforce, header-validate, unit-validate, graph-verify, doctor
 3. `test-tools` - Runs Rust tests
 
 All three must pass for green CI.

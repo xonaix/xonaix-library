@@ -1,6 +1,6 @@
 ---
 schema: "xonaix-document-header"
-schema_version: "2.0"
+schema_version: "2.1"
 
 # --- Identity ---
 repo: "xonaix-library"
@@ -13,7 +13,7 @@ language: "en"
 # --- Version ---
 version: "XLIB-1.0.0"
 baseline: null
-status: "active"
+status: "approved"
 
 # --- Classification ---
 trust_class: "L1/L2"
@@ -57,7 +57,7 @@ constitutional_conformance:
 
 # --- Lifecycle ---
 created: "2025-12-31T00:00:00Z"
-last_updated: "2025-12-31T22:00:00Z"
+last_updated: "2025-12-31T22:26:48Z"
 ---
 
 # C Language Standard

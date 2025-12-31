@@ -54,6 +54,9 @@ jobs:
       - name: Run enforcement checks
         run: bin/xonaix-library-tools enforce --current-only
 
+      - name: Run header validation
+        run: bin/xonaix-library-tools header-validate
+
       - name: Run unit validation
         run: bin/xonaix-library-tools unit-validate
 
