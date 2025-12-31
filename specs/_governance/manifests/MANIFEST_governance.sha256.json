@@ -11,8 +11,8 @@
     },
     {
       "path": "specs/_governance/LIBRARY_STANDARD_HEADER_CONTRACT.md",
-      "sha256": "250c4349e734c45441637097969d7ed21cd0295eaaad9eedfe42522e0ddd8a00",
-      "size": 3510,
+      "sha256": "89eee371d4da57fb32a6cbb6fae24f215fdb0edde70eee70c45347bb3ef3931b",
+      "size": 7332,
       "type": "file"
     },
     {
@@ -22,7 +22,7 @@
       "type": "file"
     }
   ],
-  "generated_at": "2025-12-31T19:01:11.434100+00:00",
+  "generated_at": "2025-12-31T20:06:12.392128+00:00",
   "generator": "tools/xonaix-library-tools",
   "manifest_version": "2.0.0"
 }
