@@ -277,13 +277,11 @@ pub fn run(repo_root_arg: Option<String>, _current_only: bool) -> Result<(), Enf
     // Check 6: Required governance files
     println!();
     println!("[6/8] Checking required governance files...");
+    // Only library-specific governance files are required here.
+    // Org-wide governance (AUDIT_CONTRACT, NO_DEBT_RULES, etc.) lives in xonaix-specs.
     let required_governance_files = [
-        "specs/_governance/AUDIT_CONTRACT.md",
-        "specs/_governance/NO_DEBT_RULES.md",
-        "specs/_governance/DISTRIBUTION_EXCLUSIONS.md",
         "specs/_governance/LIBRARY_SEALING_CONTRACT.md",
         "specs/_governance/LIBRARY_STANDARD_HEADER_CONTRACT.md",
-        "specs/_governance/XONAIX_SELF_GOVERNANCE_CONTRACT.md",
         "specs/_governance/UNIT_REGISTRY.json",
     ];
     let mut missing_files: Vec<String> = Vec::new();
