@@ -1,107 +1,146 @@
-# Session Context - Git Workflow & Cortex Vision
+# Session Context - Claude Recovery Document
 
-## Completed This Session
+**Purpose:** Restore Claude context if session is lost (VS Code crash, etc.)
 
-1. Implemented header schema v2.1 with expanded status lifecycle
-2. Built header-validate Rust command
-3. Created _roadmap/ folder with governance specs
-4. Migrated 17 documents to v2.1
-5. CI is green
-6. Created GIT_WORKFLOW_CONTRACT.md
-7. Created CORTEX_GUARDIAN_SPEC.md
-8. Updated CLAUDE.md with PR workflow
-9. Set up branch protection on main
+**Last Updated:** 2025-12-31T23:35:00Z
 
-## Xonaix Vision: Trust Infrastructure
+---
 
-### The Problem (Thanksgiving 2025)
-AWS, Microsoft, Cloudflare all went down in one week - all due to bad decisions.
-Bad configs, unreviewed changes, fat-fingers, rogue actions.
+## Current State
 
-### The Solution: Xonaix Trust Stack
+### Repository
+- **Repo:** xonaix-library
+- **Branch:** main (after this commit)
+- **Last Commit:** Adding VISION.md and context update
 
-1. **Everything requires approval** - No unilateral actions
-2. **Everything is signed** - Cryptographic proof of who/when
-3. **Everything is on the ledger** - ZeroPoint immutable audit trail
-4. **Even Founder follows rules** - Leading by example, no exceptions
-5. **Cortex analyzes before merge** - AI guardian catches problems before damage
-
-### Cortex Guardian Vision
-
-Xonaix Cortex analyzes commits and advises if something will cause harm:
-- Bad configs that could cause outages
-- Security vulnerabilities (viruses, zero-days)
-- Code patterns that break systems
-- Hardware configs that destabilize
-
-**Scale:** From dad at home with OpenWRT + Cortex-Lite to the DOD
-**Goal:** Shield the world so technology keeps people safe, happy, and protected
-
-Future: OpenWRT refactored by Xonaix Code-Core and Forge as Rust
-
-## Git Workflow - Phased Implementation
-
-### Phase 1: Single-Party Workflow (Current)
-
-Branch protection active with:
-- PR required (no direct push to main)
-- CI must pass (build-tools, global-enforcement, test-tools)
-- Linear history (squash merge only)
+### Branch Protection Active
+- PR required (but override granted for this specific push)
+- CI must pass: build-tools, global-enforcement, test-tools
+- Linear history (squash merge)
 - No force pushes
-- No branch deletions
-- Review requirement: DISABLED (single-person workflow)
 
-Macman-1 (Founder) creates PRs, waits for CI, merges.
+### Account Strategy (Phase 1 Active)
+- **Macman-1:** Founder, reviews/approves
+- **Xonaix-Core:** (Future) Claude submits from this account
+- Currently in Phase 1: single-party workflow, no review requirement
 
-### Phase 2: Two-Account Workflow (Next)
+---
 
-When Xonaix Core account is set up:
-- **Xonaix-Core**: Claude submits PRs from this account
-- **Macman-1**: Reviews and approves PRs
-- Review requirement: RE-ENABLED
+## Session History
 
-This enables proper separation:
-- AI agent submits work
-- Human reviews and approves
-- Full audit trail of who did what
+### Completed This Session
 
-### Phase 3: Multi-Party Workflow (Future)
+1. Header schema v2.1 implemented (expanded status lifecycle)
+2. header-validate Rust command built
+3. 17 documents migrated to v2.1
+4. GIT_WORKFLOW_CONTRACT.md created
+5. CORTEX_GUARDIAN_SPEC.md created
+6. Branch protection enabled on GitHub
+7. PR workflow tested (PR #1, PR #2 - both merged)
+8. Claude workflow patterns documented (proactive monitoring)
+9. VISION.md created (mission and soul of Xonaix)
 
-When team grows or customer engagements begin:
-- Multiple reviewers
-- CODEOWNERS file
-- Role-based approvals
-- See MULTI_PARTY_GOVERNANCE_SPEC.md
+### Key Discussions Captured
 
-## Branch Protection Rules (Phase 1)
+1. **Thanksgiving 2025 Motivation**
+   - AWS, Microsoft, Cloudflare all failed in one week
+   - Bad configs, unreviewed changes, fat-fingers, rogue actions
+   - Preventable human errors that slipped through
 
-| Rule | Setting |
-|------|---------|
-| Require PR to merge | Yes |
-| Require status checks | Yes (strict) |
-| Required checks | build-tools, global-enforcement, test-tools |
-| Require linear history | Yes |
-| Enforce admins | Yes |
-| Allow force push | No |
-| Allow deletions | No |
-| Require approving reviews | No (Phase 1 only) |
+2. **The Mission**
+   - "Shield the world from viruses, zero-days, and horrible commits"
+   - Technology keeps people safe, happy, and protected
 
-## Account Strategy
+3. **The Brand Promise**
+   - "The company the world trusts to do it right"
+   - Library is the model for all repos
 
-| Account | Role | Purpose |
-|---------|------|---------|
-| Macman-1 | Founder | Reviews, approves, owns repos |
-| Xonaix-Core | AI Agent | Claude submits PRs from this account |
+4. **The Scale Vision**
+   - From dad at home with OpenWRT + Cortex-Lite to the DOD
+   - Same principles, same rigor, scaled appropriately
 
-This separation ensures:
-- Clear audit trail (human vs AI actions)
-- Proper review workflow (AI submits, human approves)
-- No self-approval issues
-- Scales to team workflow later
+5. **Trust Stack (5 Pillars)**
+   - Everything requires approval
+   - Everything is signed
+   - Everything is on the ledger (ZeroPoint)
+   - Even Founder follows rules
+   - Cortex analyzes before merge
 
-## Governance Documents Created
+6. **Override Rules**
+   - 1-time only
+   - Must be explicit in conversation
+   - Becomes part of audit trail
+   - Even Founder follows this
 
-1. **GIT_WORKFLOW_CONTRACT.md** - Git workflow governance
-2. **CORTEX_GUARDIAN_SPEC.md** - AI commit analysis roadmap
-3. **MULTI_PARTY_GOVERNANCE_SPEC.md** - Future multi-party workflow
-4. **ZEROPOINT_INTEGRATION_SPEC.md** - Cryptographic ledger integration
+7. **Future: OpenWRT**
+   - Refactored by Xonaix Code-Core and Forge as Rust
+   - Protected by Cortex-Lite
+
+---
+
+## Roadmap Documents
+
+| Document | Purpose |
+|----------|---------|
+| VISION.md | Mission, motivation, soul of Xonaix |
+| CORTEX_GUARDIAN_SPEC.md | AI-powered commit analysis |
+| MULTI_PARTY_GOVERNANCE_SPEC.md | Multi-party approval for Blades |
+| ZEROPOINT_INTEGRATION_SPEC.md | Cryptographic ledger integration |
+| SESSION_CONTEXT.md | This document - Claude recovery |
+
+---
+
+## Architecture Summary
+
+
+
+---
+
+## Documents Needing Signature
+
+19 documents in "approved" status awaiting XCLib/ZeroPoint:
+
+- 3 governance contracts
+- 2 meta documents  
+- 14 language standards (Rust, TypeScript, Python, C, C++, etc.)
+
+---
+
+## Claude Workflow Patterns
+
+### Pattern: Wait for Human Action
+1. Create PR, wait for CI
+2. Notify human: "PR ready for review"
+3. Set todo to "waiting on human"
+4. Watch for merge (poll in background)
+5. When human merges, proceed automatically
+6. Verify post-merge CI, clean up, report
+
+### Pattern: Context Preservation
+- Regularly update SESSION_CONTEXT.md
+- Capture key discussions in roadmap docs
+- Don't assume context persists between sessions
+
+### Pattern: Override Handling
+- Override must be explicit in conversation
+- One-time only (not standing permission)
+- Record in commit message for audit trail
+
+---
+
+## Recovery Instructions
+
+If Claude needs to be restored:
+
+1. Read this file first
+2. Read VISION.md for mission context
+3. Read CLAUDE.md for operational rules
+4. Check git log for recent activity
+5. Check GitHub for open PRs
+6. Resume from current state
+
+---
+
+*Session Context Document*
+*Canonical: `xonaix-library::specs/_roadmap/SESSION_CONTEXT.md`*
+*Updated: 2025-12-31*
