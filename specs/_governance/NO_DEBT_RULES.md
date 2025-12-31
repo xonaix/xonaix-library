@@ -49,7 +49,7 @@ Excluded from strict enforcement:
 ## Machine-Parseable Policy
 
 ```yaml
-policy_version: "1.0.0"
+policy_version: "XLIB-1.0.0"
 baseline: "LIB-1.0.0"
 status: "PRE-SEAL"
 

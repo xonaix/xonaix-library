@@ -2,7 +2,7 @@
 title: "NATS Messaging Standard"
 unit_id: "library/standards/nats"
 standard_type: "standard"
-version: "1.0.0"
+version: "XLIB-1.0.0"
 status: "active"
 owner: "Founder"
 last_updated: "2025-12-31"

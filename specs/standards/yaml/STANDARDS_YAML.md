@@ -2,7 +2,7 @@
 title: "YAML Data Format Standard"
 unit_id: "library/standards/yaml"
 standard_type: "standard"
-version: "1.0.0"
+version: "XLIB-1.0.0"
 status: "active"
 owner: "Founder"
 last_updated: "2025-12-31"

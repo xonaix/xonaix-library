@@ -58,7 +58,7 @@ The header MUST use YAML frontmatter delimited by triple dashes.
 title: "<Standard Title>"
 unit_id: "library/<category>/<name>"
 standard_type: "<standard | mini-standard>"
-version: "<MAJOR.MINOR.PATCH>"
+version: "XLIB-<MAJOR.MINOR.PATCH>"
 status: "<active | deprecated>"
 owner: "<Owner Identifier>"
 last_updated: "<YYYY-MM-DD>"
@@ -92,9 +92,10 @@ No other values permitted.
 
 ### 5.4 version
 
-- MUST follow semantic versioning
+- MUST use format: `XLIB-MAJOR.MINOR.PATCH`
+- XLIB prefix identifies this as a Xonaix Library document
 - MUST match the version declared in UNIT.json
-- No prefixes (v, LIB, etc.)
+- Example: `XLIB-1.0.0`, `XLIB-1.1.0`, `XLIB-2.0.0`
 
 ### 5.5 status
 
