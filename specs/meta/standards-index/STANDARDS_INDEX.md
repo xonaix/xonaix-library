@@ -1,19 +1,51 @@
 ---
-title: "Standards Index"
+schema: "xonaix-document-header"
+schema_version: "1.0"
+
+# --- Identity ---
+repo: "xonaix-library"
+path: "specs/meta/standards-index/STANDARDS_INDEX.md"
 unit_id: "library/meta/standards-index"
-standard_type: "standard"
+title: "Standards Index"
+document_type: "standard"
+language: "en"
+
+# --- Classification ---
+trust_class: null
+classification: "internal"
+compliance: []
+
+# --- Ownership ---
+owner: "Founder"
+approved_by: "Founder"
+
+# --- Authority ---
+authority:
+  repo: "xonaix-specs"
+  ref: "THE_XONAIX_WAY.md"
+  version: null
+
+# --- Relationships ---
+depends_on: []
+supersedes: null
+superseded_by: null
+
+# --- Lifecycle ---
 version: "XLIB-1.0.0"
 status: "active"
-owner: "Founder"
-last_updated: "2025-12-31"
+created: "2025-12-31T00:00:00Z"
+last_updated: "2025-12-31T21:00:00Z"
 ---
+
 # Xonaix Library Standards Index
 
-This document serves as the authoritative catalog of language standards in the Xonaix Library.
+This document defines the cross-cutting requirements and classification system for all language standards in the Xonaix Library.
 
-**For principles and philosophy:** See THE_XONAIX_WAY.md in xonaix-specs/core.
+**For principles and philosophy:** See THE_XONAIX_WAY.md in xonaix-specs.
 
-**For language-specific implementation:** See the individual standards listed below.
+**For the authoritative catalog of units:** See UNIT_REGISTRY.json in _governance.
+
+**For language-specific implementation:** See the individual standards in specs/standards/.
 
 ---
 
@@ -84,22 +116,44 @@ Code produced by Forge, agents, or templates MUST pass the same standards as hum
 
 > **Rust-first. TypeScript for interfaces. Everything else requires justification.**
 
-| Language | Role | Trust Class | Status |
-|----------|------|-------------|--------|
-| **Rust** | Primary | L1/L2 | Active |
-| **TypeScript** | Secondary | L3 | Active |
-| **SQL** | Data | L3 | Active |
-| **NATS** | Messaging | L3 | Active |
-| **Tauri** | Desktop | L3/L4 | Active |
-| **SvelteKit** | UI Framework | L4 | Active |
-| **WASM** | Sandboxed Execution | L1/L2 | Active |
-| **YAML** | Configuration | L4 | Active |
-| **TOML** | Configuration | L4 | Active |
-| **JSON** | Data Format | L4 | Active |
-| **C** | FFI | L2 | Active |
-| **C++** | FFI | L2 | Active |
-| **Node.js** | Runtime | L3 | Active |
-| **Python** | Legacy | L4 | Deprecated |
+### Primary Languages
+
+| Language | Role | Trust Class |
+|----------|------|-------------|
+| **Rust** | Primary systems language | L1/L2 |
+| **TypeScript** | Secondary, interfaces only | L3 |
+
+### Supporting Languages
+
+| Language | Role | Trust Class |
+|----------|------|-------------|
+| **SQL** | Data persistence | L2 |
+| **NATS** | Messaging | L2 |
+| **WASM** | Sandboxed execution | L1/L2 |
+
+### Framework Standards
+
+| Framework | Role | Trust Class |
+|-----------|------|-------------|
+| **Tauri** | Desktop shell | L3/L4 |
+| **SvelteKit** | UI framework | L4 |
+
+### Configuration Formats
+
+| Format | Role | Trust Class |
+|--------|------|-------------|
+| **YAML** | Configuration | L4 |
+| **TOML** | Rust configuration | L4 |
+| **JSON** | Data interchange | L4 |
+
+### Additional Languages
+
+| Language | Role | Trust Class |
+|----------|------|-------------|
+| **C** | FFI bindings | L1/L2 |
+| **C++** | FFI bindings | L1/L2 |
+| **Node.js** | Build tooling | L3 |
+| **Python** | Scripting, AI/ML | L3 |
 
 ---
 
@@ -113,51 +167,23 @@ Code produced by Forge, agents, or templates MUST pass the same standards as hum
 
 ---
 
-## Part 5: Standards Catalog
-
-### Language Standards
-
-| Standard | Language | Trust Class | Location |
-|----------|----------|-------------|----------|
-| STANDARDS_RUST.md | Rust | L1/L2 | `specs/standards/rust/` |
-| STANDARDS_TYPESCRIPT.md | TypeScript | L3 | `specs/standards/typescript/` |
-| STANDARDS_SQL.md | SQL | L3 | `specs/standards/sql/` |
-| STANDARDS_NATS.md | NATS | L3 | `specs/standards/nats/` |
-| STANDARDS_TAURI.md | Tauri | L3/L4 | `specs/standards/tauri/` |
-| STANDARDS_SVELTEKIT.md | SvelteKit | L4 | `specs/standards/sveltekit/` |
-| STANDARDS_WASM.md | WebAssembly | L1/L2 | `specs/standards/wasm/` |
-| STANDARDS_YAML.md | YAML | L4 | `specs/standards/yaml/` |
-| STANDARDS_TOML.md | TOML | L4 | `specs/standards/toml/` |
-| STANDARDS_JSON.md | JSON | L4 | `specs/standards/json/` |
-| STANDARDS_C.md | C | L2 | `specs/standards/c/` |
-| STANDARDS_CPP.md | C++ | L2 | `specs/standards/cpp/` |
-| STANDARDS_NODEJS.md | Node.js | L3 | `specs/standards/nodejs/` |
-| STANDARDS_PYTHON.md | Python | L4 | `specs/standards/python/` |
-
-### Meta Standards
-
-| Standard | Purpose | Location |
-|----------|---------|----------|
-| STANDARDS_INDEX.md | This catalog | `specs/meta/standards-index/` |
-| TEMPLATE_LANGUAGE_STANDARD.md | Template for new standards | `specs/meta/language-template/` |
-
----
-
-## Creating New Standards
+## Part 5: Creating New Standards
 
 Use TEMPLATE_LANGUAGE_STANDARD.md as the base for any new language standard.
 
 ### Process
 
-1. Copy the template
+1. Copy the template from `specs/meta/language-template/`
 2. Fill in language-specific implementations
 3. Assign appropriate Trust Class
-4. Add to this catalog
-5. Register in UNIT_REGISTRY.json
+4. Register in `specs/_governance/UNIT_REGISTRY.json`
+5. Run doctor to verify
+6. Commit and push, wait for green CI
 
 ### Justification Required
 
 When proposing a new language, document:
+
 - Why Rust cannot be used
 - Trust Class assignment with rationale
 - Implementation of all Cross-Language Requirements
@@ -167,12 +193,13 @@ When proposing a new language, document:
 
 ## References
 
-- **Principles:** THE_XONAIX_WAY.md (xonaix-specs/core)
+- **Principles:** THE_XONAIX_WAY.md (xonaix-specs)
 - **Header Format:** LIBRARY_STANDARD_HEADER_CONTRACT.md
 - **Unit Registry:** UNIT_REGISTRY.json
+- **Template:** TEMPLATE_LANGUAGE_STANDARD.md
 
 ---
 
-*Xonaix Library Standards Index v1.0.0*
-
-*"Standards define what 'good' looks like — for new code and legacy transformation alike."*
+*Xonaix Library Standard*
+*Canonical: `xonaix-library::specs/meta/standards-index/STANDARDS_INDEX.md`*
+*Authority: `xonaix-specs::THE_XONAIX_WAY.md`*
