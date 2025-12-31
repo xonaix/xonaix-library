@@ -1,44 +1,48 @@
 ---
-title: "TOML Configuration Standard"
+schema: "xonaix-document-header"
+schema_version: "1.0"
+
+# --- Identity ---
+repo: "xonaix-library"
+path: "specs/standards/toml/STANDARDS_TOML.md"
 unit_id: "library/standards/toml"
-standard_type: "standard"
+title: "TOML Configuration Standard"
+document_type: "standard"
+language: "en"
+
+# --- Classification ---
+trust_class: "L4"
+classification: "internal"
+compliance: []
+
+# --- Ownership ---
+owner: "Founder"
+approved_by: "Founder"
+
+# --- Authority ---
+authority:
+  repo: "xonaix-specs"
+  ref: "THE_XONAIX_WAY.md"
+  version: null
+
+# --- Relationships ---
+depends_on: []
+supersedes: null
+superseded_by: null
+
+# --- Lifecycle ---
 version: "XLIB-1.0.0"
 status: "active"
-owner: "Founder"
-last_updated: "2025-12-31"
----
-# The Xonaix Way
-## Standards: TOML
-
-**Version:** B-5.8.5
-**Status:** Active
-**Core-Compatible:** 5.7.0
-**Trust Class:** L4
-**Created:** December 2025
-**Last Reviewed:** December 2025
-
-*This document implements The Xonaix Way B-5.8.5 principles for TOML configuration files.*
-
+created: "2025-12-31T00:00:00Z"
+last_updated: "2025-12-31T20:00:00Z"
 ---
 
-## Document Info
+# TOML Configuration Standard
 
-| Field | Value |
-|-------|-------|
-| Domain | Configuration |
-| Status | **Active** |
-| Version | B-5.8.5 |
-| Core-Compatible | 5.7.0 |
-| Trust Class | L4 (Configuration) |
-| Created | December 2025 |
-| Last Reviewed | December 2025 |
-| Specification | TOML v1.0.0 |
-| Primary Use | Cargo.toml, Rust configuration |
-| Related Standards | STANDARDS_YAML.md, STANDARDS_JSON.md, STANDARDS_RUST.md |
+TOML is used for Rust configuration (Cargo.toml) and application settings in Xonaix systems.
 
-**Prerequisites:** Read [THE_XONAIX_WAY.md](../THE_XONAIX_WAY.md) first. This document assumes familiarity with the 9 Principles.
+This standard assumes familiarity with the 10 Principles defined in THE_XONAIX_WAY.md.
 
----
 
 ## Trust Class
 
@@ -1051,33 +1055,9 @@ password = "secret123"
 - **ALIGNED:** Cross-language requirements per STANDARDS_INDEX B-5.8.5
 - **Source:** Red-Blue-Black Team synthesis with Founder approval
 
-### v5.0.0 - Core-Compatible 5.1.0 (December 2025)
-- **REVIEWED:** Rainbow Team compatibility review
-- **CONFIRMED:** No content changes required for Core 5.1.0 compatibility
-- **NOTE:** Deviation recording syntax compatible with cryptographic enforcement model
-
-### v5.0.0 (December 2025)
-- **ALIGNED:** Core-Version updated to 5.0.0
-- **ADDED:** Principle 9 mapping (persistence configs, sled, rocksdb, fsync)
-- **ADDED:** Deviation Recording syntax
-- **ADDED:** Complete lints section aligned with STANDARDS_RUST.md
-- **ADDED:** MSRV policy by classification
-- **ADDED:** Cargo.lock commit policy
-- **ADDED:** cargo-vet requirements for Controlled
-- **ADDED:** cargo-geiger requirements for Controlled
-- **ADDED:** Profile security settings explanation
-- **ADDED:** Workspace configuration patterns
-- **ADDED:** Complete CI pipeline example
-- **UPDATED:** X.I. Prompt Appendix with v5.0.0 requirements
-
-### v0.1.0 (December 2025)
-- Initial draft
-- Based on The Xonaix Way v1.1.0
 
 ---
 
-*TOML Standards B-5.8.5 — Part of The Xonaix Way B-5.8.5*
-
-*"Cargo.toml is your project's contract. Security values require signed manifests."*
-
-*Xonaix, Inc. — Intelligence, evolved.*
+*Xonaix Library Standard*
+*Canonical: `xonaix-library::specs/standards/toml/STANDARDS_TOML.md`*
+*Authority: `xonaix-specs::THE_XONAIX_WAY.md`*

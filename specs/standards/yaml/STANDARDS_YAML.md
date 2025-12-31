@@ -1,43 +1,47 @@
 ---
-title: "YAML Data Format Standard"
+schema: "xonaix-document-header"
+schema_version: "1.0"
+
+# --- Identity ---
+repo: "xonaix-library"
+path: "specs/standards/yaml/STANDARDS_YAML.md"
 unit_id: "library/standards/yaml"
-standard_type: "standard"
+title: "YAML Data Format Standard"
+document_type: "standard"
+language: "en"
+
+# --- Classification ---
+trust_class: "L4"
+classification: "internal"
+compliance: []
+
+# --- Ownership ---
+owner: "Founder"
+approved_by: "Founder"
+
+# --- Authority ---
+authority:
+  repo: "xonaix-specs"
+  ref: "THE_XONAIX_WAY.md"
+  version: null
+
+# --- Relationships ---
+depends_on: []
+supersedes: null
+superseded_by: null
+
+# --- Lifecycle ---
 version: "XLIB-1.0.0"
 status: "active"
-owner: "Founder"
-last_updated: "2025-12-31"
----
-# The Xonaix Way
-## Standards: YAML
-
-**Version:** B-5.8.5
-**Status:** Active
-**Core-Compatible:** 5.7.0
-**Trust Class:** L4
-**Created:** December 2025
-**Last Reviewed:** December 2025
-
-*This document implements The Xonaix Way B-5.8.5 principles for YAML configuration files.*
-
+created: "2025-12-31T00:00:00Z"
+last_updated: "2025-12-31T20:00:00Z"
 ---
 
-## Document Info
+# YAML Data Format Standard
 
-| Field | Value |
-|-------|-------|
-| Domain | Configuration |
-| Status | **Active** |
-| Version | B-5.8.5 |
-| Core-Compatible | 5.7.0 |
-| Trust Class | L4 (Configuration) |
-| Created | December 2025 |
-| Last Reviewed | December 2025 |
-| Specification | YAML 1.2 |
-| Related Standards | STANDARDS_JSON.md, STANDARDS_TOML.md |
+YAML is used for configuration files and CI/CD pipelines in Xonaix systems.
 
-**Prerequisites:** Read [THE_XONAIX_WAY.md](../THE_XONAIX_WAY.md) first. This document assumes familiarity with the 9 Principles.
-
----
+This standard assumes familiarity with the 10 Principles defined in THE_XONAIX_WAY.md.
 
 ## Trust Class
 
@@ -1206,33 +1210,9 @@ data: !!python/object:module.Class
 - **ALIGNED:** Cross-language requirements per STANDARDS_INDEX B-5.8.5
 - **Source:** Red-Blue-Black Team synthesis with Founder approval
 
-### v5.0.0 - Core-Compatible 5.1.0 (December 2025)
-- **REVIEWED:** Rainbow Team compatibility review
-- **CONFIRMED:** No content changes required for Core 5.1.0 compatibility
-- **NOTE:** Deviation recording syntax compatible with cryptographic enforcement model
-
-### v5.0.0 (December 2025)
-- **ALIGNED:** Core-Version updated to 5.0.0
-- **ADDED:** Principle 9 mapping (durable queues, persistence configs)
-- **ADDED:** Deviation Recording syntax
-- **ADDED:** CI enforcement for safe_load
-- **ADDED:** Secret detection requirements
-- **ADDED:** UTF-8 encoding requirement
-- **ADDED:** Anchor security / billion laughs mitigation
-- **ADDED:** Schema validation as MUST for Production/Controlled
-- **ADDED:** NATS JetStream durability configuration
-- **ADDED:** Database durability configuration
-- **ADDED:** Complete CI pipeline example
-- **UPDATED:** X.I. Prompt Appendix with v5.0.0 requirements
-
-### v0.1.0 (December 2025)
-- Initial draft
-- Based on The Xonaix Way v1.1.0
 
 ---
 
-*YAML Standards B-5.8.5 — Part of The Xonaix Way B-5.8.5*
-
-*"Configuration should be boring. Safe loaders are non-negotiable."*
-
-*Xonaix, Inc. — Intelligence, evolved.*
+*Xonaix Library Standard*
+*Canonical: `xonaix-library::specs/standards/yaml/STANDARDS_YAML.md`*
+*Authority: `xonaix-specs::THE_XONAIX_WAY.md`*

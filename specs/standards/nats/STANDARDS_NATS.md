@@ -1,45 +1,48 @@
 ---
-title: "NATS Messaging Standard"
+schema: "xonaix-document-header"
+schema_version: "1.0"
+
+# --- Identity ---
+repo: "xonaix-library"
+path: "specs/standards/nats/STANDARDS_NATS.md"
 unit_id: "library/standards/nats"
-standard_type: "standard"
+title: "NATS Messaging Standard"
+document_type: "standard"
+language: "en"
+
+# --- Classification ---
+trust_class: "L2"
+classification: "internal"
+compliance: []
+
+# --- Ownership ---
+owner: "Founder"
+approved_by: "Founder"
+
+# --- Authority ---
+authority:
+  repo: "xonaix-specs"
+  ref: "THE_XONAIX_WAY.md"
+  version: null
+
+# --- Relationships ---
+depends_on: []
+supersedes: null
+superseded_by: null
+
+# --- Lifecycle ---
 version: "XLIB-1.0.0"
 status: "active"
-owner: "Founder"
-last_updated: "2025-12-31"
----
-# The Xonaix Way
-## Standards: NATS
-
-**Version:** B-5.8.5
-**Status:** Active
-**Core-Compatible:** 5.7.0
-**Trust Class:** L3
-**Created:** December 2025
-**Last Reviewed:** December 2025
-
-*This document implements The Xonaix Way B-5.8.5 principles for NATS messaging infrastructure.*
-
+created: "2025-12-31T00:00:00Z"
+last_updated: "2025-12-31T20:00:00Z"
 ---
 
-## Document Info
+# NATS Messaging Standard
 
-| Field | Value |
-|-------|-------|
-| Domain | Messaging Infrastructure |
-| Status | **Active** |
-| Version | B-5.8.5 |
-| Core-Compatible | 5.7.0 |
-| Trust Class | L3 (Transport) |
-| Created | December 2025 |
-| Last Reviewed | December 2025 |
-| NATS Version | 2.10+ |
-| JetStream | Required |
-| Primary Client | `async-nats` (Rust) |
-| Related Standards | STANDARDS_RUST.md |
+NATS is the canonical messaging system for Xonaix, providing durable, high-performance messaging with JetStream persistence.
 
-**Prerequisites:** Read [THE_XONAIX_WAY.md](../THE_XONAIX_WAY.md) first. This document assumes familiarity with the 9 Principles.
+This standard assumes familiarity with the 10 Principles defined in THE_XONAIX_WAY.md.
 
-**Infrastructure Role:** NATS is the **messaging backbone** for all Xonaix inter-service communication. It is the primary implementation of Principle 9 (Nothing Lost, Ever) for distributed systems.
 
 ---
 
@@ -1664,33 +1667,9 @@ js.publish(subject, serde_json::to_vec(&envelope)?).await?;
 - **MAJOR:** Added Trust Class section (L3 Transport)
 - **MAJOR:** Added Authority vs Transport section (CRITICAL)
 - **MAJOR:** Added XCLib Integration section (signature at consumer)
-- **MAJOR:** Added Numeric Policy section
-- **MAJOR:** Added Error Handling section
-- **UPDATED:** Core-Compatible to 5.7.0
-- **ALIGNED:** Cross-language requirements per STANDARDS_INDEX B-5.8.5
-- **Source:** Red-Blue-Black Team synthesis with Founder approval
-
-### v5.1.0 (December 2025)
-- **RATIFIED:** Rainbow Team consensus (Red-Blue-White-Green)
-- **ADDED:** Audit Hash Policy (BLAKE3 for performance, SHA3-512 for AUDIT/Tier 3-4)
-- **ADDED:** Subject Authorization Policy (least-privilege publishes)
-- **ADDED:** Ejection protocol for integrity violations
-- **CREATED:** Initial NATS standard for Xonaix messaging backbone
-- **ADDED:** Complete subject hierarchy with xonaix.* namespace
-- **ADDED:** Stream configurations for GOVERNANCE, CORTEX, FORGE, AUDIT
-- **ADDED:** KV store patterns for config and position caching
-- **ADDED:** Dead letter handling patterns
-- **ADDED:** Exactly-once semantics with deduplication
-- **ADDED:** Security patterns (TLS, auth, authorization)
-- **ADDED:** High availability and reconnection patterns
-- **ADDED:** Principle 9 enforcement throughout
-- **ADDED:** Complete testing patterns including chaos tests
-- **ADDED:** X.I. Prompt Appendix
 
 ---
 
-*NATS Standards B-5.8.5 — Part of The Xonaix Way B-5.8.5*
-
-*"NATS is transport. Authority comes from XCLib signatures."*
-
-*Xonaix, Inc. — Intelligence, evolved.*
+*Xonaix Library Standard*
+*Canonical: `xonaix-library::specs/standards/nats/STANDARDS_NATS.md`*
+*Authority: `xonaix-specs::THE_XONAIX_WAY.md`*

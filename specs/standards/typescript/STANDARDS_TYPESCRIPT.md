@@ -1,43 +1,49 @@
 ---
-title: "TypeScript Language Standard"
+schema: "xonaix-document-header"
+schema_version: "1.0"
+
+# --- Identity ---
+repo: "xonaix-library"
+path: "specs/standards/typescript/STANDARDS_TYPESCRIPT.md"
 unit_id: "library/standards/typescript"
-standard_type: "standard"
+title: "TypeScript Language Standard"
+document_type: "standard"
+language: "en"
+
+# --- Classification ---
+trust_class: "L3"
+classification: "internal"
+compliance: []
+
+# --- Ownership ---
+owner: "Founder"
+approved_by: "Founder"
+
+# --- Authority ---
+authority:
+  repo: "xonaix-specs"
+  ref: "THE_XONAIX_WAY.md"
+  version: null
+
+# --- Relationships ---
+depends_on: []
+supersedes: null
+superseded_by: null
+
+# --- Lifecycle ---
 version: "XLIB-1.0.0"
 status: "active"
-owner: "Founder"
-last_updated: "2025-12-31"
----
-# The Xonaix Way
-## Language Standards: TypeScript
-
-**Version:** B-5.8.5
-**Status:** Active (Secondary Language)
-**Core-Compatible:** 5.7.0
-**Trust Class:** L3
-**Created:** December 2025
-**Last Reviewed:** December 2025
-
-*This document implements The Xonaix Way B-5.8.5 principles for TypeScript projects.*
-
+created: "2025-12-31T00:00:00Z"
+last_updated: "2025-12-31T20:00:00Z"
 ---
 
-## Document Info
+# TypeScript Language Standard
 
-| Field | Value |
-|-------|-------|
-| Language | TypeScript |
-| Status | **Active** (Secondary Language) |
-| Version | B-5.8.5 |
-| Core-Compatible | 5.7.0 |
-| Trust Class | L3 (Orchestration) |
-| Created | December 2025 |
-| Last Reviewed | December 2025 |
-| Minimum Version | TypeScript 5.3+ |
-| Related Standards | STANDARDS_SVELTEKIT.md, STANDARDS_TAURI.md |
+TypeScript is the secondary language for Xonaix development, used for customer-facing interfaces, web dashboards, and SvelteKit frontends.
 
-**Prerequisites:** Read [THE_XONAIX_WAY.md](../THE_XONAIX_WAY.md) first. This document assumes familiarity with the 9 Principles.
+This standard assumes familiarity with the 10 Principles defined in THE_XONAIX_WAY.md.
 
-**Language Policy:** TypeScript is the **secondary language** for Xonaix development. It is permitted ONLY for:
+**Language Policy:** TypeScript is permitted ONLY for:
 - Customer-facing API interfaces
 - Web interfaces and dashboards
 - Customer SDKs
@@ -48,7 +54,6 @@ last_updated: "2025-12-31"
 
 Core systems, governance code, and security-critical components MUST use Rust.
 
----
 
 ## Trust Class
 
@@ -1747,58 +1752,9 @@ try { } catch (e) { }
 
 // Floating promise
 fetchData();
-```
 
 ---
 
-## Changelog
-
-### B-5.8.5 (December 2025)
-- **MAJOR:** Added Trust Class section (L3 Orchestration)
-- **MAJOR:** Added XCLib Integration section (WASM bindings required)
-- **MAJOR:** Added Numeric Policy section (BigInt/string for canonical data)
-- **MAJOR:** Added Capability & Posture Handling section
-- **MAJOR:** Added Error Handling (Exception Semantics) section
-- **MAJOR:** Added Generated Code Accountability section
-- **UPDATED:** Core-Compatible to 5.7.0
-- **ALIGNED:** Cross-language requirements per STANDARDS_INDEX B-5.8.5
-- **Source:** Red-Blue-Black Team synthesis with Founder approval
-
-### v5.0.0 - Core-Compatible 5.1.0 (December 2025)
-- **REVIEWED:** Rainbow Team compatibility review
-- **CONFIRMED:** No content changes required for Core 5.1.0 compatibility
-- **NOTE:** Deviation recording syntax compatible with cryptographic enforcement model
-
-### v5.0.0 (December 2025)
-- **ALIGNED:** Synchronized with The Xonaix Way v5.0.0
-- **ADDED:** Principle 9 (Nothing Lost) - IndexedDB, Service Worker patterns
-- **ADDED:** Deviation Recording syntax
-- **ADDED:** NASA/DOD grade requirements (bounded loops, assertions, function size)
-- **ADDED:** Coverage thresholds (95%/90% for Controlled)
-- **ADDED:** Property-based testing section (fast-check)
-- **ADDED:** Mutation testing section (Stryker, ≥95%)
-- **ADDED:** Chaos testing section
-- **ADDED:** PQC phased approach (hybrid in 2027)
-- **ADDED:** FIPS 140-3 roadmap
-- **ADDED:** Custom assertion utility
-- **ADDED:** ESLint max-lines-per-function rule
-- **UPDATED:** CI pipeline with all checks
-- **UPDATED:** X.I. Prompt Appendix
-
-### v1.0.0 (December 2025)
-- **GRADUATED** from Interim to Active status
-
-### v0.2.0 (December 2025)
-- Updated Core-Version to 1.1.0
-- Added Language Policy note
-
-### v0.1.0 (December 2025)
-- Initial interim standard
-
----
-
-*TypeScript Standards B-5.8.5 — Part of The Xonaix Way B-5.8.5*
-
-*"Types are documentation that the compiler enforces. Trust comes from XCLib."*
-
-*Xonaix, Inc. — Intelligence, evolved.*
+*Xonaix Library Standard*
+*Canonical: `xonaix-library::specs/standards/typescript/STANDARDS_TYPESCRIPT.md`*
+*Authority: `xonaix-specs::THE_XONAIX_WAY.md`*

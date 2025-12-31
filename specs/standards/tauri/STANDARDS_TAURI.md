@@ -1,44 +1,47 @@
 ---
-title: "Tauri Framework Standard"
+schema: "xonaix-document-header"
+schema_version: "1.0"
+
+# --- Identity ---
+repo: "xonaix-library"
+path: "specs/standards/tauri/STANDARDS_TAURI.md"
 unit_id: "library/standards/tauri"
-standard_type: "standard"
+title: "Tauri Framework Standard"
+document_type: "standard"
+language: "en"
+
+# --- Classification ---
+trust_class: "L3/L4"
+classification: "internal"
+compliance: []
+
+# --- Ownership ---
+owner: "Founder"
+approved_by: "Founder"
+
+# --- Authority ---
+authority:
+  repo: "xonaix-specs"
+  ref: "THE_XONAIX_WAY.md"
+  version: null
+
+# --- Relationships ---
+depends_on: []
+supersedes: null
+superseded_by: null
+
+# --- Lifecycle ---
 version: "XLIB-1.0.0"
 status: "active"
-owner: "Founder"
-last_updated: "2025-12-31"
----
-# The Xonaix Way
-## Standards: Tauri
-
-**Version:** B-5.8.5
-**Status:** Active
-**Core-Compatible:** 5.7.0
-**Trust Class:** L3 (IPC) / L4 (UI)
-**Created:** December 2025
-**Last Reviewed:** December 2025
-
-*This document implements The Xonaix Way B-5.8.5 principles for Tauri desktop application development.*
-
+created: "2025-12-31T00:00:00Z"
+last_updated: "2025-12-31T20:00:00Z"
 ---
 
-## Document Info
+# Tauri Framework Standard
 
-| Field | Value |
-|-------|-------|
-| Domain | Desktop Application Framework |
-| Status | **Active** |
-| Version | B-5.8.5 |
-| Core-Compatible | 5.7.0 |
-| Trust Class | L3 (IPC) / L4 (UI) |
-| Created | December 2025 |
-| Last Reviewed | December 2025 |
-| Tauri Version | 2.x |
-| Primary Use | Nexus Desktop |
-| Related Standards | STANDARDS_RUST.md, STANDARDS_SVELTEKIT.md, STANDARDS_TYPESCRIPT.md |
+Tauri is the desktop shell for Nexus, bridging Rust backend and SvelteKit frontend for desktop deployment.
 
-**Prerequisites:** Read [THE_XONAIX_WAY.md](../THE_XONAIX_WAY.md), [STANDARDS_RUST.md](STANDARDS_RUST.md), and [STANDARDS_SVELTEKIT.md](STANDARDS_SVELTEKIT.md) first. This document bridges Rust backend and SvelteKit frontend for desktop deployment.
-
-**Framework Role:** Tauri is the **desktop shell** wrapping the Nexus SvelteKit frontend. It provides native capabilities, offline support, and secure local operations for Zero Trust and Sovereign deployments.
+This standard assumes familiarity with the 10 Principles defined in THE_XONAIX_WAY.md.
 
 ---
 
@@ -1879,33 +1882,9 @@ NO Missing flush() after storage writes
 - **MAJOR:** Added XCLib Integration section
 - **MAJOR:** Added Capability & Posture Handling section
 - **CRITICAL:** Desktop ≠ Trusted clarification
-- **UPDATED:** Core-Compatible to 5.7.0
-- **ALIGNED:** Cross-language requirements per STANDARDS_INDEX B-5.8.5
-- **Source:** Red-Blue-Black Team synthesis with Founder approval
-
-### v5.1.0 (December 2025)
-- **RATIFIED:** Rainbow Team consensus (Red-Blue-White-Green)
-- **ADDED:** Section 3.5 Controlled Shell Access
-- **ADDED:** FIDO2/Biometric signed intent flow
-- **ADDED:** Capability relocation (shell to admin profile)
-- **ADDED:** Intent metrics (tauri.intent.signed, tauri.intent.unsigned_blocked)
-- **CREATED:** Initial Tauri standard for Nexus desktop
-- **ADDED:** Complete project structure
-- **ADDED:** Configuration patterns (tauri.conf.json, capabilities)
-- **ADDED:** Command patterns with error handling
-- **ADDED:** Frontend integration (commands, events, platform detection)
-- **ADDED:** Air-gapped ceremony patterns (QR signing)
-- **ADDED:** Local persistence with sled
-- **ADDED:** Offline queue and sync service
-- **ADDED:** Updater configuration
-- **ADDED:** Testing patterns
-- **ADDED:** Complete CI pipeline
-- **ADDED:** X.I. Prompt Appendix
 
 ---
 
-*Tauri Standards B-5.8.5 — Part of The Xonaix Way B-5.8.5*
-
-*"Desktop is where sovereignty lives. Trust comes from XCLib proofs."*
-
-*Xonaix, Inc. — Intelligence, evolved.*
+*Xonaix Library Standard*
+*Canonical: `xonaix-library::specs/standards/tauri/STANDARDS_TAURI.md`*
+*Authority: `xonaix-specs::THE_XONAIX_WAY.md`*

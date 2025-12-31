@@ -1,9 +1,10 @@
 # LIBRARY STANDARD HEADER CONTRACT
 
 **Status:** Binding Standard Contract
-**Applies to:** All Xonaix Library standards and mini-standards
+**Applies to:** All Xonaix Library standards, mini-standards, and templates
 **Authority:** XONAIX_SELF_GOVERNANCE_CONTRACT.md
 **Scope:** Library repository only
+**Schema Version:** 1.0
 
 ---
 
@@ -13,10 +14,11 @@ This contract defines the mandatory header format for all standards and mini-sta
 
 The header is not decorative. It is a semantic control surface for:
 
+- Machine parsing and validation
 - Human comprehension
-- Mechanical verification
 - Agent reasoning
 - Long-term governance stability
+- Enterprise compliance tracking
 
 No standard is considered valid without a compliant header.
 
@@ -28,12 +30,13 @@ This contract applies to:
 
 - All Library standards
 - All Library mini-standards
+- All Library templates
 - All future standards added to the Library
 
 This contract does not apply to:
 
 - Product specifications (B5, UX, Nexus, Web)
-- Governance contracts
+- Governance contracts (use simplified headers)
 - Runtime documentation
 - Reference-only external documents
 
@@ -51,75 +54,155 @@ No content, comments, or whitespace may precede the header.
 
 The header MUST use YAML frontmatter delimited by triple dashes.
 
-### Canonical Format
+### 4.1 Canonical Format
 
 ```yaml
 ---
-title: "<Standard Title>"
-unit_id: "library/<category>/<name>"
-standard_type: "<standard | mini-standard>"
-version: "XLIB-<MAJOR.MINOR.PATCH>"
-status: "<active | deprecated>"
-owner: "<Owner Identifier>"
-last_updated: "<YYYY-MM-DD>"
+schema: "xonaix-document-header"
+schema_version: "1.0"
+
+# --- Identity ---
+repo: "{REPO_NAME}"
+path: "{FILE_PATH}"
+unit_id: "library/{category}/{name}"
+title: "{Document Title}"
+document_type: "{standard | mini-standard | template | contract}"
+language: "en"
+
+# --- Classification ---
+trust_class: "{L1|L2|L3|L4|null}"
+classification: "{public | internal | confidential | restricted}"
+compliance: []
+
+# --- Ownership ---
+owner: "{Owner Identifier}"
+approved_by: "{Approver Identifier}"
+
+# --- Authority ---
+authority:
+  repo: "{AUTHORITY_REPO}"
+  ref: "{AUTHORITY_FILE}"
+  version: null
+
+# --- Relationships ---
+depends_on: []
+supersedes: null
+superseded_by: null
+
+# --- Lifecycle ---
+version: "XLIB-{MAJOR.MINOR.PATCH}"
+status: "{draft | proposed | active | deprecated | superseded}"
+created: "{ISO8601_UTC}"
+last_updated: "{ISO8601_UTC}"
 ---
 ```
+
+### 4.2 Section Comments
+
+The section comments (`# --- Identity ---`, etc.) are REQUIRED for human readability but are NOT parsed semantically. They MUST appear exactly as shown.
 
 ---
 
 ## 5. Field Semantics (Binding)
 
-### 5.1 title
+### 5.1 Schema Identification
 
-- Human-readable name of the standard
-- MUST be descriptive
-- MUST NOT include version numbers
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `schema` | string | YES | MUST be `"xonaix-document-header"` |
+| `schema_version` | string | YES | Schema version, currently `"1.0"` |
 
-### 5.2 unit_id
+### 5.2 Identity Section
 
-- MUST exactly match the unit's declared UNIT.json
-- Path-derived inference is forbidden
-- Immutable once published
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `repo` | string | YES | Repository name (e.g., `"xonaix-library"`) |
+| `path` | string | YES | Full path from repo root |
+| `unit_id` | string | YES | Unique identifier (library/category/name) |
+| `title` | string | YES | Human-readable title |
+| `document_type` | enum | YES | One of: `standard`, `mini-standard`, `template`, `contract` |
+| `language` | string | YES | ISO 639-1 code (e.g., `"en"`) |
 
-### 5.3 standard_type
+### 5.3 Classification Section
 
-MUST be one of:
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `trust_class` | string/null | YES | Trust classification: `L1`, `L2`, `L3`, `L4`, or `null` |
+| `classification` | enum | YES | One of: `public`, `internal`, `confidential`, `restricted` |
+| `compliance` | array | YES | Regulatory tags (e.g., `["SOC2", "FIPS"]`), may be empty |
 
-- `standard`
-- `mini-standard`
+### 5.4 Ownership Section
 
-No other values permitted.
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `owner` | string | YES | Responsible party (e.g., `"Founder"`) |
+| `approved_by` | string | YES | Who approved this version |
 
-### 5.4 version
+### 5.5 Authority Section
 
-- MUST use format: `XLIB-MAJOR.MINOR.PATCH`
-- XLIB prefix identifies this as a Xonaix Library document
-- MUST match the version declared in UNIT.json
-- Example: `XLIB-1.0.0`, `XLIB-1.1.0`, `XLIB-2.0.0`
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `authority.repo` | string | YES | Repository containing authority document |
+| `authority.ref` | string | YES | Authority document filename |
+| `authority.version` | string/null | YES | Pinned version (future use, currently `null`) |
 
-### 5.5 status
+### 5.6 Relationships Section
 
-MUST be one of:
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `depends_on` | array | YES | Dependencies as `[{repo: "x", ref: "y.md"}]`, may be empty |
+| `supersedes` | string/null | YES | Document this replaces |
+| `superseded_by` | string/null | YES | Document that replaces this |
 
-- `active`
-- `deprecated`
+### 5.7 Lifecycle Section
 
-Deprecated standards remain authoritative unless explicitly replaced.
-
-### 5.6 owner
-
-- MUST identify the responsible authority
-- MAY be a role (e.g., Founder)
-- Ownership changes require explicit update
-
-### 5.7 last_updated
-
-- ISO date format only: YYYY-MM-DD
-- Updated only when content meaningfully changes
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `version` | string | YES | Format: `XLIB-MAJOR.MINOR.PATCH` |
+| `status` | enum | YES | One of: `draft`, `proposed`, `active`, `deprecated`, `superseded` |
+| `created` | string | YES | ISO 8601 UTC timestamp |
+| `last_updated` | string | YES | ISO 8601 UTC timestamp |
 
 ---
 
-## 6. Forbidden Header Practices
+## 6. Status Lifecycle
+
+| Status | Description |
+|--------|-------------|
+| `draft` | Work in progress, not for reference |
+| `proposed` | Ready for review and approval |
+| `active` | Approved and authoritative |
+| `deprecated` | Still valid but being phased out |
+| `superseded` | Replaced by another document |
+
+Deprecated standards remain authoritative unless explicitly superseded.
+
+---
+
+## 7. Classification Levels
+
+| Level | Description |
+|-------|-------------|
+| `public` | Safe for external distribution |
+| `internal` | Xonaix internal use only |
+| `confidential` | Limited distribution, named recipients |
+| `restricted` | Highest sensitivity, explicit approval required |
+
+---
+
+## 8. Trust Classes
+
+| Class | Description |
+|-------|-------------|
+| `L1` | Constitutional — Can assert truth, sign, verify |
+| `L2` | Deterministic — Trusted computation, no external authority |
+| `L3` | Orchestration — Coordinates workflows, cannot assert truth |
+| `L4` | Interface — UI/configuration, fully untrusted |
+| `null` | Not applicable (templates, meta-documents) |
+
+---
+
+## 9. Forbidden Header Practices
 
 The following are explicitly forbidden:
 
@@ -128,17 +211,19 @@ The following are explicitly forbidden:
 - Soft or advisory language in header values
 - Ellipses (...)
 - Emojis
-- Placeholder values
+- Placeholder values (e.g., `{TODO}`, `TBD`)
 - Freeform metadata blocks
 - Markdown headers in place of frontmatter
+- Non-UTC timestamps
+- Relative paths
 
 ---
 
-## 7. Consistency Requirements
+## 10. Consistency Requirements
 
 Header values MUST match:
 
-- UNIT.json
+- UNIT.json (when present)
 - Unit manifest metadata
 - BOM references (when applicable)
 
@@ -146,35 +231,43 @@ Inconsistencies are hard failures.
 
 ---
 
-## 8. Enforcement
+## 11. Enforcement
 
 Compliance with this contract is enforced by:
 
-- normalize-frontmatter
+- normalize-frontmatter tool
 - CI --check mode
 - Unit validation
 - Doctor checks
+- Schema validation
 
 Any deviation constitutes governance debt and MUST block sealing and release.
 
 ---
 
-## 9. Evolution
+## 12. Evolution
 
 Changes to this contract require:
 
 - Explicit Founder approval
+- Schema version increment
 - Regeneration of governance manifests
 - Full CI verification pass
+- Migration of existing documents
 
 Backward compatibility is not guaranteed.
 
 ---
 
-## 10. Final Assertion
+## 13. Final Assertion
 
 A standard without a compliant header is not a standard.
 
-The header is the identity anchor for human and machine reasoning.
+The header is the identity anchor for machine and human reasoning.
 
-Clarity here prevents ambiguity everywhere else.
+Machine-first, human-readable. This is the Xonaix way.
+
+---
+
+*Governance Contract*
+*Canonical location: \`specs/_governance/LIBRARY_STANDARD_HEADER_CONTRACT.md\`*

@@ -1,424 +1,262 @@
 ---
-title: "Language Standard Template"
+schema: "xonaix-document-header"
+schema_version: "1.0"
+
+# --- Identity ---
+repo: "xonaix-library"
+path: "specs/meta/language-template/TEMPLATE_LANGUAGE_STANDARD.md"
 unit_id: "library/meta/language-template"
-standard_type: "standard"
+title: "Language Standard Template"
+document_type: "template"
+language: "en"
+
+# --- Classification ---
+trust_class: null
+classification: "internal"
+compliance: []
+
+# --- Ownership ---
+owner: "Founder"
+approved_by: "Founder"
+
+# --- Authority ---
+authority:
+  repo: "xonaix-specs"
+  ref: "THE_XONAIX_WAY.md"
+  version: null
+
+# --- Relationships ---
+depends_on: []
+supersedes: null
+superseded_by: null
+
+# --- Lifecycle ---
 version: "XLIB-1.0.0"
 status: "active"
-owner: "Founder"
-last_updated: "2025-12-31"
+created: "2025-12-31T00:00:00Z"
+last_updated: "2025-12-31T20:00:00Z"
 ---
+
 # Language Standard Template
 
-## [LANGUAGE_NAME] Language Standard
-
-**For principles:** See THE_XONAIX_WAY.md in xonaix-specs/core.
-
-**For cross-language requirements:** See STANDARDS_INDEX.md.
+This is the canonical template for creating new language standards in the Xonaix Library.
 
 ---
 
-## Document Info
+## Header Schema Reference
 
-| Field | Value |
-|-------|-------|
-| Language | [LANGUAGE_NAME] |
-| Version | 1.0.0 |
-| Trust Class | L[1-4] |
-| Status | [Active/Deprecated] |
-| Owner | Founder |
-| Last Updated | [YYYY-MM-DD] |
+All Xonaix documents MUST use the following header schema:
+
+\`\`\`yaml
+---
+schema: "xonaix-document-header"
+schema_version: "1.0"
+
+# --- Identity ---
+repo: "{REPO_NAME}"                    # Repository containing this document
+path: "{FILE_PATH}"                    # Full path from repo root
+unit_id: "{UNIT_ID}"                   # Unique identifier (library/category/name)
+title: "{DOCUMENT_TITLE}"              # Human-readable title
+document_type: "{TYPE}"                # standard | mini-standard | template | contract
+language: "en"                         # ISO 639-1 language code
+
+# --- Classification ---
+trust_class: "{L1|L2|L3|L4|null}"      # Trust classification
+classification: "{LEVEL}"              # public | internal | confidential | restricted
+compliance: []                         # Regulatory tags: ["SOC2", "FIPS", "HIPAA"]
+
+# --- Ownership ---
+owner: "{OWNER}"                       # Responsible party
+approved_by: "{APPROVER}"              # Who approved this version
+
+# --- Authority ---
+authority:
+  repo: "{AUTHORITY_REPO}"             # Repository containing authority document
+  ref: "{AUTHORITY_FILE}"              # Authority document filename
+  version: null                        # Pin to specific version (future use)
+
+# --- Relationships ---
+depends_on: []                         # Dependencies: [{repo: "x", ref: "y.md"}]
+supersedes: null                       # Document this replaces
+superseded_by: null                    # Document that replaces this
+
+# --- Lifecycle ---
+version: "XLIB-{MAJOR.MINOR.PATCH}"    # Semantic version with XLIB prefix
+status: "{STATUS}"                     # draft | proposed | active | deprecated | superseded
+created: "{ISO8601_UTC}"               # Creation timestamp
+last_updated: "{ISO8601_UTC}"          # Last modification timestamp
+---
+\`\`\`
+
+### Status Lifecycle
+
+| Status | Description |
+|--------|-------------|
+| draft | Work in progress, not for reference |
+| proposed | Ready for review and approval |
+| active | Approved and authoritative |
+| deprecated | Still valid but being phased out |
+| superseded | Replaced by another document |
+
+### Classification Levels
+
+| Level | Description |
+|-------|-------------|
+| public | Safe for external distribution |
+| internal | Xonaix internal use only |
+| confidential | Limited distribution, named recipients |
+| restricted | Highest sensitivity, explicit approval required |
 
 ---
 
-## SECTION 1: TRUST CLASS
+## Template: [LANGUAGE_NAME] Language Standard
+
+*Copy from here when creating a new language standard.*
+
+\`\`\`markdown
+---
+schema: "xonaix-document-header"
+schema_version: "1.0"
+
+# --- Identity ---
+repo: "xonaix-library"
+path: "specs/standards/{language}/STANDARDS_{LANGUAGE}.md"
+unit_id: "library/standards/{language}"
+title: "{Language} Language Standard"
+document_type: "standard"
+language: "en"
+
+# --- Classification ---
+trust_class: "{L1|L2|L1/L2|null}"
+classification: "internal"
+compliance: []
+
+# --- Ownership ---
+owner: "Founder"
+approved_by: "Founder"
+
+# --- Authority ---
+authority:
+  repo: "xonaix-specs"
+  ref: "THE_XONAIX_WAY.md"
+  version: null
+
+# --- Relationships ---
+depends_on: []
+supersedes: null
+superseded_by: null
+
+# --- Lifecycle ---
+version: "XLIB-1.0.0"
+status: "active"
+created: "{YYYY-MM-DD}T00:00:00Z"
+last_updated: "{YYYY-MM-DD}T00:00:00Z"
+---
+
+# {Language} Language Standard
+
+{Brief description of the language's role in Xonaix development.}
+
+This standard assumes familiarity with the 10 Principles defined in THE_XONAIX_WAY.md.
+
+---
+
+## Trust Class
 
 | Attribute | Value |
 |-----------|-------|
-| Trust Class | L[1-4] |
-| Classification | [Constitutional/Deterministic/Orchestration/Interface] |
+| Trust Class | {L1/L2/L3/L4} |
+| Classification | {Constitutional/Deterministic/Orchestration/Interface} |
 
 ### What This Trust Class May Do
 
-- [Capability 1]
-- [Capability 2]
+- {Capability 1}
+- {Capability 2}
 
 ### What This Trust Class May NOT Do
 
-- [Restriction 1]
-- [Restriction 2]
+- {Restriction 1}
+- {Restriction 2}
 
 ---
 
-## SECTION 2: CROSS-LANGUAGE REQUIREMENTS
+## XCLib Integration
 
-*Implementation of requirements from STANDARDS_INDEX.md.*
+**Authority:** {Ruling reference}
 
-### 2.1 XCLib Integration
+### XCLib Exclusivity Rule
 
-| Operation | Permitted | Method |
-|-----------|-----------|--------|
-| Canonicalization | [Yes/No] | [How] |
-| Hashing | [Yes/No] | [How] |
-| Signing | [Yes/No] | [How] |
-| Verification | [Yes/No] | [How] |
+{Description of how this language integrates with XCLib}
 
-**Prohibited Patterns:**
-```[language]
-// Patterns that violate XCLib exclusivity
-```
-
-### 2.2 Numeric Policy
-
-| Type | Status | Alternative |
-|------|--------|-------------|
-| [e.g., f32] | Forbidden | [e.g., i64] |
-
-**Required Representations:**
-```[language]
-// Correct numeric handling
-amount_cents: i64  // NOT amount: f64
-```
-
-### 2.3 Authority Verification
-
-Authority must never be inferred. Always verify cryptographic proofs.
-
-```[language]
-// CORRECT: Verify proof
-fn check_authority(proof: &Proof) -> Result<Authority> {
-    xclib::verify(proof)?
-}
-
-// FORBIDDEN: Infer from context
-fn check_authority(role: &str) -> bool {
-    role == "admin"  // NO!
-}
-```
-
-### 2.4 Error Handling
-
-| Context | Strategy |
-|---------|----------|
-| L1/L2 paths | [e.g., panic=abort] |
-| Public API | [e.g., Result types] |
-| Boundary | [e.g., mapped to PublicErrorCode] |
+| Operation | Required Module |
+|-----------|-----------------|
+| Canonicalization | {module} |
+| Hashing | {module} |
+| Signing | {module} |
+| Verification | {module} |
 
 ---
 
-## SECTION 3: PRINCIPLE IMPLEMENTATION
+## Numeric Policy
 
-*How this language implements principles from THE_XONAIX_WAY.md.*
+**Authority:** {Ruling reference}
 
-| Principle | Implementation |
-|-----------|----------------|
-| Correct Over Fast | [How this language ensures correctness] |
-| Explicit Over Implicit | [How this language avoids magic] |
-| Automated Over Vigilant | [Tooling: linters, formatters, CI] |
-| Secure By Default | [Security patterns] |
-| Composable Over Clever | [Modularity patterns] |
-| Fail Loud | [Error handling patterns] |
-| Xona Augments, Human Decides | [Xona collaboration patterns] |
-| Future-Proof Over Trend | [Stability practices] |
-| Nothing Lost, Ever | [Persistence, durability patterns] |
+### Float Prohibition
 
----
+{Description of float handling in this language}
 
-## SECTION 4: PROJECT CONFIGURATION
+\`\`\`{language}
+// FORBIDDEN
+{example of forbidden pattern}
 
-### 4.1 Compiler/Runtime Configuration
-
-```[config-format]
-// Configuration here
-```
-
-### 4.2 Linting Configuration
-
-```[config-format]
-// Linter configuration
-```
-
-### 4.3 Formatting Configuration
-
-```[config-format]
-// Formatter configuration
-```
+// REQUIRED
+{example of required pattern}
+\`\`\`
 
 ---
 
-## SECTION 5: TESTING REQUIREMENTS
+## Principle Mapping
 
-### 5.1 Coverage Requirements
-
-| Classification | Line Coverage | Branch Coverage |
-|----------------|---------------|-----------------|
-| Development | ≥60% | ≥50% |
-| Production | ≥80% | ≥70% |
-| Controlled | ≥95% | ≥90% |
-
-### 5.2 Bounded Execution
-
-All loops MUST have provable termination bounds.
-
-```[language]
-// CORRECT: Bounded loop
-const MAX_ITERATIONS = 10_000;
-for (i, item) in items.iter().enumerate() {
-    if i >= MAX_ITERATIONS {
-        return Err("Exceeded max iterations");
-    }
-    process(item);
-}
-```
-
-### 5.3 Assertion Density
-
-Functions MUST include 2+ assertions for preconditions and postconditions.
-
-```[language]
-fn process(input: Input) -> Output {
-    assert!(input.is_valid());      // Precondition
-
-    let result = compute(input);
-
-    assert!(result.is_finalized()); // Postcondition
-    result
-}
-```
-
-### 5.4 Function Size
-
-| Level | Limit |
-|-------|-------|
-| MUST | ≤60 lines |
-| SHOULD | ≤30 lines |
-
-### 5.5 Property-Based Testing
-
-Controlled classification MUST use property-based tests.
-
-```[language]
-// Example property test
-```
-
-### 5.6 Mutation Testing
-
-Controlled classification MUST achieve ≥95% mutation score.
+| Principle | {Language} Implementation |
+|-----------|---------------------------|
+| 1. Correct Over Fast | {implementation} |
+| 2. Explicit Over Implicit | {implementation} |
+| 3. Automated Over Vigilant | {implementation} |
+| 4. Secure By Default | {implementation} |
+| 5. Composable Over Clever | {implementation} |
+| 6. Fail Loud | {implementation} |
+| 7. X.I. Augments, Human Decides | {implementation} |
+| 8. Future-Proof Over Trend | {implementation} |
+| 9. Nothing Lost, Ever | {implementation} |
+| 10. Clarity Above All | {implementation} |
 
 ---
 
-## SECTION 6: SECURITY
-
-### 6.1 Input Validation
-
-All external input MUST be validated before use.
-
-```[language]
-fn process_input(input: RawInput) -> Result<ValidatedInput> {
-    let validated = schema.validate(input)?;
-    Ok(validated)
-}
-```
-
-### 6.2 Secret Handling
-
-```[language]
-// MUST: Never log secrets
-fn authenticate(token: &str) {
-    log::info!("Authenticating user");  // NOT the token
-}
-```
-
-### 6.3 Approved Crypto Libraries
-
-| Purpose | Library |
-|---------|---------|
-| All crypto | XCLib (required) |
+{... Additional sections as needed ...}
 
 ---
 
-## SECTION 7: NOTHING LOST, EVER
-
-*Implementation of Principle 9.*
-
-### 7.1 Message Persistence
-
-Governance-relevant messages MUST be persisted until acknowledged.
-
-```[language]
-// Durable queue pattern
-async fn enqueue(message: Message) -> MessageId {
-    let id = generate_id();
-    storage.write(id, message).await;
-    storage.sync().await;
-    id
-}
-
-async fn acknowledge(id: MessageId) {
-    storage.delete(id).await;
-    storage.sync().await;
-}
-```
-
-### 7.2 Recovery Pattern
-
-```[language]
-// On startup, recover pending work
-async fn startup() {
-    let pending = queue.recover_pending().await;
-    for message in pending {
-        process_with_retry(message).await;
-    }
-}
-```
+*Xonaix Library Standard*
+*Canonical: \`xonaix-library::{path}\`*
+*Authority: \`xonaix-specs::THE_XONAIX_WAY.md\`*
+\`\`\`
 
 ---
 
-## SECTION 8: DEPENDENCY MANAGEMENT
+## Footer Format
 
-### 8.1 Dependency Policy
+All standards MUST end with:
 
-| Classification | Requirement |
-|----------------|-------------|
-| Development | SHOULD use lockfile |
-| Production | MUST use exact versions |
-| Controlled | MUST use exact versions + audit |
+\`\`\`markdown
+---
 
-### 8.2 Security Auditing
-
-```bash
-# Audit command for this language
-[audit command]
-```
+*Xonaix Library Standard*
+*Canonical: \`{repo}::{path}\`*
+*Authority: \`{authority.repo}::{authority.ref}\`*
+\`\`\`
 
 ---
 
-## SECTION 9: CI PIPELINE
-
-```yaml
-name: CI
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup [Language]
-        uses: [setup-action]
-
-      - name: Lint
-        run: [lint command]
-
-      - name: Format Check
-        run: [format command]
-
-      - name: Test
-        run: [test command]
-
-      - name: Security Audit
-        run: [audit command]
-
-      - name: Build
-        run: [build command]
-```
-
----
-
-## SECTION 10: DEVIATION RECORDING
-
-If a developer must violate a MUST requirement, they MUST mark it explicitly.
-
-```[language]
-// XONAIX_DEVIATION: [Reason for deviation]
-// LEDGER_ACK: [signature_hash]
-[deviating code]
-```
-
-This triggers:
-1. Warning displayed
-2. Acknowledgment required
-3. Ledger record created
-4. Artifact marked as "User Choice"
-
----
-
-## SECTION 11: XONA PROMPT APPENDIX
-
-*Add to base prompt when working with [LANGUAGE_NAME].*
-
-```
-[LANGUAGE_NAME] REQUIREMENTS:
-
-TRUST CLASS: L[X]
-
-FORBIDDEN:
-- [Pattern 1]
-- [Pattern 2]
-
-REQUIRED:
-- [Pattern 1]
-- [Pattern 2]
-
-TESTING (Controlled):
-- Bounded loops: ALL loops MUST have MAX_* constants
-- Assertion density: 2+ per function
-- Function size: ≤60 lines MUST, ≤30 lines SHOULD
-- Line coverage: ≥95%
-- Branch coverage: ≥90%
-- Mutation score: ≥95%
-
-FLAG THESE VIOLATIONS:
-NO [violation 1]
-NO [violation 2]
-```
-
----
-
-## SECTION 12: GRADUATION CHECKLIST
-
-Before this standard graduates from Draft to Active:
-
-**Core Requirements:**
-- [ ] Trust Class declared
-- [ ] All Cross-Language Requirements implemented
-- [ ] All Principles mapped with implementations
-- [ ] Deviation Recording syntax defined
-- [ ] Xona Prompt Appendix complete
-
-**Testing Requirements:**
-- [ ] Coverage thresholds defined
-- [ ] Bounded loop patterns defined
-- [ ] Assertion density patterns defined
-- [ ] Property-based testing patterns defined
-- [ ] Mutation testing integration defined
-
-**Security Requirements:**
-- [ ] XCLib integration documented
-- [ ] Numeric policy implementation documented
-- [ ] Authority verification patterns documented
-- [ ] Dependency vetting process defined
-
-**Documentation:**
-- [ ] CI pipeline example complete
-- [ ] At least 3 code examples per section
-- [ ] All examples tested and verified
-
----
-
-## References
-
-- **Principles:** THE_XONAIX_WAY.md (xonaix-specs/core)
-- **Cross-Language Requirements:** STANDARDS_INDEX.md
-- **Header Format:** LIBRARY_STANDARD_HEADER_CONTRACT.md
-
----
-
-*[LANGUAGE_NAME] Language Standard v1.0.0*
-
-*Xonaix Library*
+*Xonaix Library Standard*
+*Canonical: \`xonaix-library::specs/meta/language-template/TEMPLATE_LANGUAGE_STANDARD.md\`*
+*Authority: \`xonaix-specs::THE_XONAIX_WAY.md\`*

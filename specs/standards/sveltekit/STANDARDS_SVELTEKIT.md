@@ -1,45 +1,48 @@
 ---
-title: "SvelteKit Framework Standard"
+schema: "xonaix-document-header"
+schema_version: "1.0"
+
+# --- Identity ---
+repo: "xonaix-library"
+path: "specs/standards/sveltekit/STANDARDS_SVELTEKIT.md"
 unit_id: "library/standards/sveltekit"
-standard_type: "standard"
+title: "SvelteKit Framework Standard"
+document_type: "standard"
+language: "en"
+
+# --- Classification ---
+trust_class: "L4"
+classification: "internal"
+compliance: []
+
+# --- Ownership ---
+owner: "Founder"
+approved_by: "Founder"
+
+# --- Authority ---
+authority:
+  repo: "xonaix-specs"
+  ref: "THE_XONAIX_WAY.md"
+  version: null
+
+# --- Relationships ---
+depends_on: []
+supersedes: null
+superseded_by: null
+
+# --- Lifecycle ---
 version: "XLIB-1.0.0"
 status: "active"
-owner: "Founder"
-last_updated: "2025-12-31"
----
-# The Xonaix Way
-## Standards: SvelteKit
-
-**Version:** B-5.8.5
-**Status:** Active
-**Core-Compatible:** 5.7.0
-**Trust Class:** L4
-**Created:** December 2025
-**Last Reviewed:** December 2025
-
-*This document implements The Xonaix Way B-5.8.5 principles for SvelteKit frontend development.*
-
+created: "2025-12-31T00:00:00Z"
+last_updated: "2025-12-31T20:00:00Z"
 ---
 
-## Document Info
+# SvelteKit Framework Standard
 
-| Field | Value |
-|-------|-------|
-| Domain | Frontend Framework |
-| Status | **Active** |
-| Version | B-5.8.5 |
-| Core-Compatible | 5.7.0 |
-| Trust Class | L4 (Interface) |
-| Created | December 2025 |
-| Last Reviewed | December 2025 |
-| SvelteKit Version | 2.x (current stable) |
-| Svelte Version | 5.x |
-| Primary Use | Nexus UI |
-| Related Standards | STANDARDS_TYPESCRIPT.md, STANDARDS_TAURI.md |
+SvelteKit is the canonical frontend framework for Xonaix web interfaces and Nexus UI.
 
-**Prerequisites:** Read [THE_XONAIX_WAY.md](../THE_XONAIX_WAY.md) and [STANDARDS_TYPESCRIPT.md](STANDARDS_TYPESCRIPT.md) first. This document extends TypeScript standards for SvelteKit-specific patterns.
+This standard assumes familiarity with the 10 Principles defined in THE_XONAIX_WAY.md.
 
-**Framework Role:** SvelteKit is the **primary frontend framework** for Nexus (customer-facing interface). It runs both as a web application and within Tauri for desktop deployment.
 
 ---
 
@@ -1753,33 +1756,9 @@ NO Missing error boundaries
 - **MAJOR:** Added Capability & Posture Handling section
 - **UPDATED:** Core-Compatible to 5.7.0
 - **ALIGNED:** Cross-language requirements per STANDARDS_INDEX B-5.8.5
-- **Source:** Red-Blue-Black Team synthesis with Founder approval
-
-### v5.0.0 - Core-Compatible 5.1.0 (December 2025)
-- **REVIEWED:** Rainbow Team compatibility review
-- **CONFIRMED:** No content changes required for Core 5.1.0 compatibility
-- **NOTE:** Deviation recording syntax compatible with cryptographic enforcement model
-
-### v5.0.0 (December 2025)
-- **CREATED:** Initial SvelteKit standard for Nexus frontend
-- **ADDED:** Complete project structure and conventions
-- **ADDED:** Configuration for svelte.config.js, vite.config.ts
-- **ADDED:** Load function patterns with validation
-- **ADDED:** Form action patterns with rate limiting
-- **ADDED:** Component patterns with TypeScript
-- **ADDED:** Store patterns including persistent and offline
-- **ADDED:** API client patterns
-- **ADDED:** Security patterns (CSP, CSRF, XSS)
-- **ADDED:** Testing patterns (unit, integration, property-based)
-- **ADDED:** Error handling patterns
-- **ADDED:** Accessibility requirements
-- **ADDED:** Complete CI pipeline
-- **ADDED:** X.I. Prompt Appendix
 
 ---
 
-*SvelteKit Standards B-5.8.5 — Part of The Xonaix Way B-5.8.5*
-
-*"The best UI is invisible. Trust comes from XCLib verification."*
-
-*Xonaix, Inc. — Intelligence, evolved.*
+*Xonaix Library Standard*
+*Canonical: `xonaix-library::specs/standards/sveltekit/STANDARDS_SVELTEKIT.md`*
+*Authority: `xonaix-specs::THE_XONAIX_WAY.md`*

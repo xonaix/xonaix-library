@@ -1,45 +1,48 @@
 ---
-title: "SQL Database Standard"
+schema: "xonaix-document-header"
+schema_version: "1.0"
+
+# --- Identity ---
+repo: "xonaix-library"
+path: "specs/standards/sql/STANDARDS_SQL.md"
 unit_id: "library/standards/sql"
-standard_type: "standard"
+title: "SQL Database Standard"
+document_type: "standard"
+language: "en"
+
+# --- Classification ---
+trust_class: "L2"
+classification: "internal"
+compliance: []
+
+# --- Ownership ---
+owner: "Founder"
+approved_by: "Founder"
+
+# --- Authority ---
+authority:
+  repo: "xonaix-specs"
+  ref: "THE_XONAIX_WAY.md"
+  version: null
+
+# --- Relationships ---
+depends_on: []
+supersedes: null
+superseded_by: null
+
+# --- Lifecycle ---
 version: "XLIB-1.0.0"
 status: "active"
-owner: "Founder"
-last_updated: "2025-12-31"
----
-# The Xonaix Way
-## Standards: SQL
-
-**Version:** B-5.8.5
-**Status:** Active
-**Core-Compatible:** 5.7.0
-**Trust Class:** L3
-**Created:** December 2025
-**Last Reviewed:** December 2025
-
-*This document implements The Xonaix Way B-5.8.5 principles for SQL queries across all database systems.*
-
+created: "2025-12-31T00:00:00Z"
+last_updated: "2025-12-31T20:00:00Z"
 ---
 
-## Document Info
+# SQL Database Standard
 
-| Field | Value |
-|-------|-------|
-| Domain | Database Queries |
-| Status | **Active** |
-| Version | B-5.8.5 |
-| Core-Compatible | 5.7.0 |
-| Trust Class | L3 (Orchestration / Data Access) |
-| Created | December 2025 |
-| Last Reviewed | December 2025 |
-| Applies To | PostgreSQL (primary), all SQL databases |
-| Related Standards | STANDARDS_RUST.md (for sqlx usage) |
+SQL is used for persistent data storage in Xonaix systems, with PostgreSQL as the canonical database.
 
-**Prerequisites:** Read [THE_XONAIX_WAY.md](../THE_XONAIX_WAY.md) first.
+This standard assumes familiarity with the 10 Principles defined in THE_XONAIX_WAY.md.
 
----
-
-## Trust Class
 
 | Attribute | Value |
 |-----------|-------|
@@ -1393,33 +1396,9 @@ SELECT * FROM users OFFSET 100000;
 - **MAJOR:** Added Error Handling section
 - **MAJOR:** Added Generated Code Accountability section
 - **UPDATED:** Core-Compatible to 5.7.0
-- **ALIGNED:** Cross-language requirements per STANDARDS_INDEX B-5.8.5
-- **Source:** Red-Blue-Black Team synthesis with Founder approval
-
-### v5.1.0 (December 2025)
-- **RATIFIED:** Rainbow Team consensus (Red-Blue-White-Green)
-- **ADDED:** Section 1.4 Dynamic Identifiers (MUST use whitelists/builders)
-- **ADDED:** CI lint requirement for raw identifier detection
-- **ALIGNED:** Synchronized with The Xonaix Way v5.1.0
-- **ADDED:** Principle 9 (Nothing Lost) - WAL, fsync, audit logging
-- **ADDED:** Deviation Recording syntax
-- **ADDED:** Query timeout requirements (MUST)
-- **ADDED:** Row-Level Security (RLS) section
-- **ADDED:** Audit logging section with trigger example
-- **ADDED:** Connection security (SSL/TLS, PQC roadmap)
-- **ADDED:** NASA/DOD grade requirements section
-- **ADDED:** Bounded query requirements
-- **ADDED:** CI pipeline example
-- **UPDATED:** X.I. Prompt Appendix
-
-### v0.1.0 (December 2025)
-- Initial draft
-- SQL injection prevention, formatting, patterns
 
 ---
 
-*SQL Standards B-5.8.5 — Part of The Xonaix Way B-5.8.5*
-
-*"Parameterized queries are non-negotiable. Authority comes from XCLib, not data."*
-
-*Xonaix, Inc. — Intelligence, evolved.*
+*Xonaix Library Standard*
+*Canonical: `xonaix-library::specs/standards/sql/STANDARDS_SQL.md`*
+*Authority: `xonaix-specs::THE_XONAIX_WAY.md`*

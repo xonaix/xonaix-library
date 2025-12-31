@@ -1,43 +1,47 @@
 ---
-title: "WebAssembly Standard"
+schema: "xonaix-document-header"
+schema_version: "1.0"
+
+# --- Identity ---
+repo: "xonaix-library"
+path: "specs/standards/wasm/STANDARDS_WASM.md"
 unit_id: "library/standards/wasm"
-standard_type: "standard"
+title: "WebAssembly Standard"
+document_type: "standard"
+language: "en"
+
+# --- Classification ---
+trust_class: "L1/L2"
+classification: "internal"
+compliance: []
+
+# --- Ownership ---
+owner: "Founder"
+approved_by: "Founder"
+
+# --- Authority ---
+authority:
+  repo: "xonaix-specs"
+  ref: "THE_XONAIX_WAY.md"
+  version: null
+
+# --- Relationships ---
+depends_on: []
+supersedes: null
+superseded_by: null
+
+# --- Lifecycle ---
 version: "XLIB-1.0.0"
 status: "active"
-owner: "Founder"
-last_updated: "2025-12-31"
----
-# The Xonaix Way
-## Standards: WebAssembly (WASM)
-
-**Version:** B-5.8.5  
-**Status:** RESERVED (Primary for Cortex Nano/Lite Hierarchical Modes)  
-**Classification:** LANGUAGE STANDARD  
-**Core-Compatible:** 5.7.0  
-**Trust Class:** L1 (restricted) / L2 (full)
-
+created: "2025-12-31T00:00:00Z"
+last_updated: "2025-12-31T20:00:00Z"
 ---
 
-*This document implements The Xonaix Way principles for WebAssembly execution environments. WASM is the primary target for Cortex Nano and Lite agents requiring sovereign, offline, or resource-constrained execution.*
+# WebAssembly Standard
 
----
+WASM is the primary target for Cortex Nano and Lite agents requiring sovereign, offline, or resource-constrained execution.
 
-## Document Info
-
-| Field | Value |
-|-------|-------|
-| Domain | Execution Environment |
-| Status | **Reserved** (Cortex Nano/Lite) |
-| Version | B-5.8.5 |
-| Core-Compatible | 5.7.0 |
-| Primary Target | `wasm32-unknown-unknown` |
-| Applies To | Cortex Nano, Cortex Lite, air-gapped agents |
-| Trust Class | L1 (restricted), L2 (full) |
-| Related Standards | STANDARDS_RUST.md, XCLIB_SPEC, CORTEX_PROTOCOL |
-
-**Prerequisites:** Read THE_XONAIX_WAY.md and STANDARDS_RUST.md first.
-
-**Execution Role:** WASM is a **constrained, deterministic sandbox**. It is untrusted by default and MUST NOT assume host privileges.
+This standard assumes familiarity with the 10 Principles defined in THE_XONAIX_WAY.md.
 
 ---
 
@@ -318,32 +322,8 @@ See CORTEX_NANO_EXAMPLE.rs for a minimal compliant agent demonstrating:
 
 ---
 
-## Team Confirmation
-
-This standard was developed through consultation with:
-- Red Team (Grok) — Adversarial review
-- Black Team (GPT) — Structural review
-- Blue Team (Claude) — Synthesis
-
-Full consensus achieved December 22, 2025.
-
 ---
 
-**SIGNATURE**
-
-```
-_____________________________________________
-Founder
-Date: _______________
-
-Witness (MI Consultation):
-- Red Team: Confirmed
-- Black Team: Confirmed  
-- Blue Team: Confirmed
-```
-
----
-
-*"The sandbox is sovereign."*
-
-*Xonaix, Inc. — Intelligence, evolved.*
+*Xonaix Library Standard*
+*Canonical: `xonaix-library::specs/standards/wasm/STANDARDS_WASM.md`*
+*Authority: `xonaix-specs::THE_XONAIX_WAY.md`*

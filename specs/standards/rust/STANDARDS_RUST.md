@@ -1,41 +1,47 @@
 ---
-title: "Rust Language Standard"
+schema: "xonaix-document-header"
+schema_version: "1.0"
+
+# --- Identity ---
+repo: "xonaix-library"
+path: "specs/standards/rust/STANDARDS_RUST.md"
 unit_id: "library/standards/rust"
-standard_type: "standard"
+title: "Rust Language Standard"
+document_type: "standard"
+language: "en"
+
+# --- Classification ---
+trust_class: "L1/L2"
+classification: "internal"
+compliance: []
+
+# --- Ownership ---
+owner: "Founder"
+approved_by: "Founder"
+
+# --- Authority ---
+authority:
+  repo: "xonaix-specs"
+  ref: "THE_XONAIX_WAY.md"
+  version: null
+
+# --- Relationships ---
+depends_on: []
+supersedes: null
+superseded_by: null
+
+# --- Lifecycle ---
 version: "XLIB-1.0.0"
 status: "active"
-owner: "Founder"
-last_updated: "2025-12-31"
----
-# The Xonaix Way
-## Language Standards: Rust
-
-**Version:** B-5.8.5
-**Status:** Active (Primary Language)
-**Core-Compatible:** 5.7.0
-**Trust Class:** L1 (restricted) / L2 (full)
-**Created:** December 2025
-**Last Reviewed:** December 2025
-
-*This document implements The Xonaix Way B-5.8.5 principles for Rust projects.*
-
+created: "2025-12-31T00:00:00Z"
+last_updated: "2025-12-31T20:00:00Z"
 ---
 
-## Document Info
+# Rust Language Standard
 
-| Field | Value |
-|-------|-------|
-| Language | Rust |
-| Status | **Active** (Primary Language) |
-| Version | B-5.8.5 |
-| Core-Compatible | 5.7.0 |
-| Trust Class | L1 (restricted) / L2 (full) |
-| Created | December 2025 |
-| Last Reviewed | December 2025 |
+Rust is the **primary language** for all Xonaix development. All core systems, governance code, security-critical components, and infrastructure MUST be written in Rust.
 
-**Prerequisites:** Read [THE_XONAIX_WAY.md](../THE_XONAIX_WAY.md) first. This document assumes familiarity with the 9 Principles.
-
-**Language Policy:** Rust is the **primary language** for all Xonaix development. All core systems, governance code, security-critical components, and infrastructure MUST be written in Rust.
+This standard assumes familiarity with the 10 Principles defined in THE_XONAIX_WAY.md.
 
 ---
 
@@ -1926,71 +1932,6 @@ cargo test
 
 ---
 
-## Changelog
-
-### B-5.8.5 (December 2025)
-- **MAJOR:** Added Trust Class section (L1/L2 classification)
-- **MAJOR:** Added XCLib Integration section (exclusivity rule)
-- **MAJOR:** Added Numeric Policy section (float prohibition)
-- **MAJOR:** Added Capability & Posture Handling section
-- **MAJOR:** Added Generated Code Accountability section
-- **UPDATED:** Core-Compatible to 5.7.0
-- **ALIGNED:** Cross-language requirements per STANDARDS_INDEX B-5.8.5
-- **Source:** Red-Blue-Black Team synthesis with Founder approval
-
-### v5.1.0 (December 2025)
-- **RATIFIED:** Rainbow Team consensus (Red-Blue-White-Green)
-- **ADDED:** Reproducible Builds section (Controlled classification)
-- **ADDED:** PQC Structural Requirement (Phase flag, envelope presence)
-- **ADDED:** Weekly drift detection pattern
-- **ADDED:** SBOM signing and provenance requirements
-- **ALIGNED:** Synchronized with The Xonaix Way v5.1.0
-- **ADDED:** Principle 9 (Nothing Lost, Ever) implementation (sled, fsync, ACK queues)
-- **ADDED:** Deviation Recording syntax (XONAIX_DEVIATION marker)
-- **ADDED:** Post-Quantum Cryptography with phased approach (ML-DSA-65 via `pqcrypto-mldsa`)
-- **UPDATED:** PQC from pqcrypto-dilithium to pqcrypto-mldsa (FIPS 204 compliant)
-- **ADDED:** FIPS 140-3 compliance roadmap (phased SHOULD -> MUST by 2027)
-- **ADDED:** Common Criteria EAL4 design compatibility section
-- **ADDED:** Formal verification expansion (TLA+ for state machines, Loom for concurrency)
-- **ADDED:** Code coverage requirements (95% line, 90% branch for Controlled)
-- **ADDED:** Dependency vetting (cargo-vet MUST for Controlled)
-- **ADDED:** Unsafe tracking (cargo-geiger MUST for Controlled)
-- **ADDED:** Chaos testing section with fault injection patterns
-- **ADDED:** Mutation survivor justification requirement
-- **UPDATED:** Mutation score threshold (≥95% for Controlled)
-- **FIXED:** Async timeout examples (proper imports, no double `?`)
-- **FIXED:** Error handling examples (proper Error trait implementation)
-- **UPDATED:** CI pipeline with all new tooling
-- **UPDATED:** X.I. Prompt Appendix with v5.1.0 requirements
-- **Source:** Rainbow Team synthesis (Red, Blue, White, Green, Yellow, Purple)
-
-### v1.4.0 (December 2025)
-- Added: NASA/Google Grade Requirements section
-- Added: Formal Verification section (Kani)
-- Added: Property-Based Testing section (proptest)
-- Added: Mutation Testing section (cargo-mutants)
-
-### v1.3.0 (December 2025)
-- Added: Test Module Exceptions section
-
-### v1.2.0 (December 2025)
-- Added: Rust Version Alignment section
-- Added: GitHub Actions section
-- Added: Approved Cryptographic Crates table
-- Added: Hash Chain Implementation guidance
-- Added: MCP Server Development section
-
-### v1.1.0 (December 2025)
-- Updated: Core-Version to 1.1.0
-- Added: Language Policy note
-
-### v1.0.0 (December 2025)
-- Initial release
-
----
-
-*Rust Standards B-5.8.5 — Part of The Xonaix Way B-5.8.5*
-
-*"Rust is the foundation. XCLib is the trust root."*
-
-*Xonaix, Inc. — Intelligence, evolved.*
+*Xonaix Library Standard*
+*Canonical: `xonaix-library::specs/standards/rust/STANDARDS_RUST.md`*
+*Authority: `xonaix-specs::THE_XONAIX_WAY.md`*
