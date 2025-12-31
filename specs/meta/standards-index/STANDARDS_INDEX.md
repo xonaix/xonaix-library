@@ -1,6 +1,6 @@
 ---
 schema: "xonaix-document-header"
-schema_version: "1.0"
+schema_version: "2.0"
 
 # --- Identity ---
 repo: "xonaix-library"
@@ -10,6 +10,11 @@ title: "Standards Index"
 document_type: "standard"
 language: "en"
 
+# --- Version ---
+version: "XLIB-1.0.0"
+baseline: null
+status: "active"
+
 # --- Classification ---
 trust_class: null
 classification: "internal"
@@ -18,6 +23,7 @@ compliance: []
 # --- Ownership ---
 owner: "Founder"
 approved_by: "Founder"
+authority_tier: "T2"
 
 # --- Authority ---
 authority:
@@ -29,12 +35,29 @@ authority:
 depends_on: []
 supersedes: null
 superseded_by: null
+implements: []
+
+# --- Integrity ---
+integrity:
+  hash_alg: null
+  content_hash: null
+  signature: null
+  signed_by: null
+  signed_at: null
+
+# --- Constitutional Conformance ---
+constitutional_conformance:
+  constitution_version: null
+  constitution_hash: null
+  zero_point_version: null
+  zero_point_hash: null
+  deviations: []
+  last_verified: null
+  verified_by: null
 
 # --- Lifecycle ---
-version: "XLIB-1.0.0"
-status: "active"
 created: "2025-12-31T00:00:00Z"
-last_updated: "2025-12-31T21:00:00Z"
+last_updated: "2025-12-31T22:00:00Z"
 ---
 
 # Xonaix Library Standards Index

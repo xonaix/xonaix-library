@@ -1,16 +1,75 @@
+---
+schema: "xonaix-document-header"
+schema_version: "2.0"
+
+# --- Identity ---
+repo: "xonaix-library"
+path: "specs/_governance/LIBRARY_STANDARD_HEADER_CONTRACT.md"
+unit_id: "governance/library/header-contract"
+title: "Library Standard Header Contract"
+document_type: "contract"
+language: "en"
+
+# --- Version ---
+version: "XGOV-2.0.0"
+baseline: null
+status: "active"
+
+# --- Classification ---
+trust_class: null
+classification: "internal"
+compliance: []
+
+# --- Ownership ---
+owner: "Founder"
+approved_by: "Founder"
+authority_tier: "T1"
+
+# --- Authority ---
+authority:
+  repo: "xonaix-specs"
+  ref: "XONAIX_SELF_GOVERNANCE_CONTRACT.md"
+  version: null
+
+# --- Relationships ---
+depends_on: []
+supersedes: null
+superseded_by: null
+implements: []
+
+# --- Integrity ---
+integrity:
+  hash_alg: null
+  content_hash: null
+  signature: null
+  signed_by: null
+  signed_at: null
+
+# --- Constitutional Conformance ---
+constitutional_conformance:
+  constitution_version: null
+  constitution_hash: null
+  zero_point_version: null
+  zero_point_hash: null
+  deviations: []
+  last_verified: null
+  verified_by: null
+
+# --- Lifecycle ---
+created: "2025-12-31T00:00:00Z"
+last_updated: "2025-12-31T22:00:00Z"
+---
+
 # LIBRARY STANDARD HEADER CONTRACT
 
-**Status:** Binding Standard Contract
-**Applies to:** All Xonaix Library standards, mini-standards, and templates
-**Authority:** XONAIX_SELF_GOVERNANCE_CONTRACT.md
-**Scope:** Library repository only
-**Schema Version:** 1.0
+**Scope:** All Xonaix repositories adopting the Universal Document Header
+**Schema Version:** 2.0
 
 ---
 
 ## 1. Purpose
 
-This contract defines the mandatory header format for all standards and mini-standards in the Xonaix Library.
+This contract defines the mandatory header format for all documents in the Xonaix ecosystem.
 
 The header is not decorative. It is a semantic control surface for:
 
@@ -19,8 +78,10 @@ The header is not decorative. It is a semantic control surface for:
 - Agent reasoning
 - Long-term governance stability
 - Enterprise compliance tracking
+- Cryptographic integrity verification
+- Constitutional conformance auditing
 
-No standard is considered valid without a compliant header.
+No document is considered valid without a compliant header.
 
 ---
 
@@ -31,14 +92,8 @@ This contract applies to:
 - All Library standards
 - All Library mini-standards
 - All Library templates
-- All future standards added to the Library
-
-This contract does not apply to:
-
-- Product specifications (B5, UX, Nexus, Web)
-- Governance contracts (use simplified headers)
-- Runtime documentation
-- Reference-only external documents
+- All governance contracts
+- All future documents added to any Xonaix repository
 
 ---
 
@@ -54,44 +109,67 @@ No content, comments, or whitespace may precede the header.
 
 The header MUST use YAML frontmatter delimited by triple dashes.
 
-### 4.1 Canonical Format
+### 4.1 Canonical Format (Schema v2.0)
 
 ```yaml
 ---
 schema: "xonaix-document-header"
-schema_version: "1.0"
+schema_version: "2.0"
 
 # --- Identity ---
 repo: "{REPO_NAME}"
 path: "{FILE_PATH}"
-unit_id: "library/{category}/{name}"
+unit_id: "{domain}/{category}/{name}"
 title: "{Document Title}"
 document_type: "{standard | mini-standard | template | contract}"
 language: "en"
 
+# --- Version ---
+version: "{PREFIX}-{MAJOR}.{MINOR}.{PATCH}"
+baseline: "{XBASE-X.Y.Z | null}"
+status: "{draft | proposed | active | deprecated | superseded}"
+
 # --- Classification ---
-trust_class: "{L1|L2|L3|L4|null}"
+trust_class: "{L0 | L1 | L2 | L3 | L4 | null}"
 classification: "{public | internal | confidential | restricted}"
 compliance: []
 
 # --- Ownership ---
 owner: "{Owner Identifier}"
 approved_by: "{Approver Identifier}"
+authority_tier: "{T0 | T1 | T2 | T3}"
 
 # --- Authority ---
 authority:
   repo: "{AUTHORITY_REPO}"
   ref: "{AUTHORITY_FILE}"
-  version: null
+  version: "{VERSION | null}"
 
 # --- Relationships ---
 depends_on: []
 supersedes: null
 superseded_by: null
+implements: []
+
+# --- Integrity ---
+integrity:
+  hash_alg: "{SHA3-512 | null}"
+  content_hash: "{HASH | null}"
+  signature: "{SIGNATURE | null}"
+  signed_by: "{SIGNER_ID | null}"
+  signed_at: "{ISO8601_UTC | null}"
+
+# --- Constitutional Conformance ---
+constitutional_conformance:
+  constitution_version: "{VERSION | null}"
+  constitution_hash: "{HASH | null}"
+  zero_point_version: "{VERSION | null}"
+  zero_point_hash: "{HASH | null}"
+  deviations: []
+  last_verified: "{ISO8601_UTC | null}"
+  verified_by: "{VERIFIER_ID | null}"
 
 # --- Lifecycle ---
-version: "XLIB-{MAJOR.MINOR.PATCH}"
-status: "{draft | proposed | active | deprecated | superseded}"
 created: "{ISO8601_UTC}"
 last_updated: "{ISO8601_UTC}"
 ---
@@ -103,69 +181,159 @@ The section comments (`# --- Identity ---`, etc.) are REQUIRED for human readabi
 
 ---
 
-## 5. Field Semantics (Binding)
+## 5. Version Prefix System
 
-### 5.1 Schema Identification
+All documents use domain-specific version prefixes to enable independent evolution.
+
+### 5.1 Domain Prefixes
+
+| Prefix | Domain | Description |
+|--------|--------|-------------|
+| `XZERO` | Zero Point | Constitutional foundation, immutable core principles |
+| `XCORT` | Cortex | Core system specifications |
+| `XCODE` | Code-Core | Code standards and implementations |
+| `XNEX` | Nexus | Integration and networking specifications |
+| `XBLADE` | Blade | UI/UX specifications |
+| `XINFRA` | Infrastructure | Infrastructure and deployment |
+| `XLIB` | Library | Language and protocol standards |
+| `XGOV` | Governance | Governance contracts and policies |
+| `XUX` | User Experience | User experience specifications |
+
+### 5.2 Baseline Versions
+
+Baselines aggregate multiple document versions into coherent releases:
+
+- Format: `XBASE-MAJOR.MINOR.PATCH`
+- Purpose: Cross-domain coordination
+- Example: `XBASE-1.0.0` includes specific versions of XLIB, XGOV, etc.
+
+### 5.3 Customer Releases
+
+Customer-facing releases aggregate baselines:
+
+- Format: `XREL-MAJOR.MINOR.PATCH`
+- Purpose: External versioning
+- Maps to internal baseline versions
+
+---
+
+## 6. Field Semantics (Binding)
+
+### 6.1 Schema Identification
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `schema` | string | YES | MUST be `"xonaix-document-header"` |
-| `schema_version` | string | YES | Schema version, currently `"1.0"` |
+| `schema_version` | string | YES | Schema version, currently `"2.0"` |
 
-### 5.2 Identity Section
+### 6.2 Identity Section
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `repo` | string | YES | Repository name (e.g., `"xonaix-library"`) |
 | `path` | string | YES | Full path from repo root |
-| `unit_id` | string | YES | Unique identifier (library/category/name) |
+| `unit_id` | string | YES | Unique identifier (domain/category/name) |
 | `title` | string | YES | Human-readable title |
 | `document_type` | enum | YES | One of: `standard`, `mini-standard`, `template`, `contract` |
 | `language` | string | YES | ISO 639-1 code (e.g., `"en"`) |
 
-### 5.3 Classification Section
+### 6.3 Version Section
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `trust_class` | string/null | YES | Trust classification: `L1`, `L2`, `L3`, `L4`, or `null` |
+| `version` | string | YES | Format: `{PREFIX}-MAJOR.MINOR.PATCH` |
+| `baseline` | string/null | YES | Baseline version this document belongs to |
+| `status` | enum | YES | One of: `draft`, `proposed`, `active`, `deprecated`, `superseded` |
+
+### 6.4 Classification Section
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `trust_class` | string/null | YES | Trust classification: `L0`, `L1`, `L2`, `L3`, `L4`, or `null` |
 | `classification` | enum | YES | One of: `public`, `internal`, `confidential`, `restricted` |
 | `compliance` | array | YES | Regulatory tags (e.g., `["SOC2", "FIPS"]`), may be empty |
 
-### 5.4 Ownership Section
+### 6.5 Ownership Section
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `owner` | string | YES | Responsible party (e.g., `"Founder"`) |
 | `approved_by` | string | YES | Who approved this version |
+| `authority_tier` | enum | YES | One of: `T0`, `T1`, `T2`, `T3` |
 
-### 5.5 Authority Section
+### 6.6 Authority Section
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `authority.repo` | string | YES | Repository containing authority document |
 | `authority.ref` | string | YES | Authority document filename |
-| `authority.version` | string/null | YES | Pinned version (future use, currently `null`) |
+| `authority.version` | string/null | YES | Pinned version of authority document |
 
-### 5.6 Relationships Section
+### 6.7 Relationships Section
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `depends_on` | array | YES | Dependencies as `[{repo: "x", ref: "y.md"}]`, may be empty |
 | `supersedes` | string/null | YES | Document this replaces |
 | `superseded_by` | string/null | YES | Document that replaces this |
+| `implements` | array | YES | List of specifications this document implements |
 
-### 5.7 Lifecycle Section
+### 6.8 Integrity Section (Cryptographic)
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `version` | string | YES | Format: `XLIB-MAJOR.MINOR.PATCH` |
-| `status` | enum | YES | One of: `draft`, `proposed`, `active`, `deprecated`, `superseded` |
+| `integrity.hash_alg` | string/null | YES | Hash algorithm (e.g., `"SHA3-512"`) |
+| `integrity.content_hash` | string/null | YES | Hash of document content (excluding header) |
+| `integrity.signature` | string/null | YES | Cryptographic signature |
+| `integrity.signed_by` | string/null | YES | Signer identifier |
+| `integrity.signed_at` | string/null | YES | ISO 8601 UTC timestamp of signing |
+
+### 6.9 Constitutional Conformance Section
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `constitutional_conformance.constitution_version` | string/null | YES | Version of constitution this conforms to |
+| `constitutional_conformance.constitution_hash` | string/null | YES | Hash of constitution version |
+| `constitutional_conformance.zero_point_version` | string/null | YES | Version of Zero Point |
+| `constitutional_conformance.zero_point_hash` | string/null | YES | Hash of Zero Point version |
+| `constitutional_conformance.deviations` | array | YES | Documented deviations from constitution |
+| `constitutional_conformance.last_verified` | string/null | YES | When conformance was last verified |
+| `constitutional_conformance.verified_by` | string/null | YES | Who verified conformance |
+
+### 6.10 Lifecycle Section
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
 | `created` | string | YES | ISO 8601 UTC timestamp |
 | `last_updated` | string | YES | ISO 8601 UTC timestamp |
 
 ---
 
-## 6. Status Lifecycle
+## 7. Trust Classes
+
+| Class | Name | Description | May Do | May NOT Do |
+|-------|------|-------------|--------|------------|
+| `L0` | Constitutional | Foundational truth, bedrock principles | Define truth, establish authority | Be modified without ceremony |
+| `L1` | Authority | Can assert truth, sign, verify | Sign, verify, canonicalize, hash | --- |
+| `L2` | Deterministic | Trusted computation | Pure computation, transformation | Sign/verify without L1 delegation |
+| `L3` | Orchestration | Coordinates workflows | Coordinate, transport, query | Assert truth, infer authority |
+| `L4` | Interface | UI/configuration | Display, tooling, scripting | Any governance-affecting operation |
+| `null` | Not Applicable | Templates, meta-documents | --- | --- |
+
+---
+
+## 8. Authority Tiers
+
+| Tier | Name | Description | Examples |
+|------|------|-------------|----------|
+| `T0` | Constitutional | Foundational, rarely changes | Zero Point, Constitution |
+| `T1` | Governance | Core policies and contracts | This contract, Sealing Contract |
+| `T2` | Standards | Language and protocol standards | Rust Standard, TypeScript Standard |
+| `T3` | Specifications | Product and feature specifications | B5, UX specs |
+
+---
+
+## 9. Status Lifecycle
 
 | Status | Description |
 |--------|-------------|
@@ -179,7 +347,7 @@ Deprecated standards remain authoritative unless explicitly superseded.
 
 ---
 
-## 7. Classification Levels
+## 10. Classification Levels
 
 | Level | Description |
 |-------|-------------|
@@ -190,48 +358,36 @@ Deprecated standards remain authoritative unless explicitly superseded.
 
 ---
 
-## 8. Trust Classes
-
-| Class | Description |
-|-------|-------------|
-| `L1` | Constitutional — Can assert truth, sign, verify |
-| `L2` | Deterministic — Trusted computation, no external authority |
-| `L3` | Orchestration — Coordinates workflows, cannot assert truth |
-| `L4` | Interface — UI/configuration, fully untrusted |
-| `null` | Not applicable (templates, meta-documents) |
-
----
-
-## 9. Forbidden Header Practices
+## 11. Forbidden Header Practices
 
 The following are explicitly forbidden:
 
 - Missing header fields
-- Additional, undocumented fields
 - Soft or advisory language in header values
 - Ellipses (...)
-- Emojis
 - Placeholder values (e.g., `{TODO}`, `TBD`)
 - Freeform metadata blocks
 - Markdown headers in place of frontmatter
 - Non-UTC timestamps
 - Relative paths
+- Guessed or inferred authority
 
 ---
 
-## 10. Consistency Requirements
+## 12. Consistency Requirements
 
 Header values MUST match:
 
 - UNIT.json (when present)
 - Unit manifest metadata
 - BOM references (when applicable)
+- Authority chain references
 
 Inconsistencies are hard failures.
 
 ---
 
-## 11. Enforcement
+## 13. Enforcement
 
 Compliance with this contract is enforced by:
 
@@ -240,12 +396,28 @@ Compliance with this contract is enforced by:
 - Unit validation
 - Doctor checks
 - Schema validation
+- Constitutional conformance verification
 
 Any deviation constitutes governance debt and MUST block sealing and release.
 
 ---
 
-## 12. Evolution
+## 14. Migration from v1.0
+
+Documents using schema v1.0 MUST migrate to v2.0:
+
+1. Update `schema_version` from `"1.0"` to `"2.0"`
+2. Move `version` and `status` to Version section
+3. Add `baseline` field (may be `null`)
+4. Add `authority_tier` to Ownership section
+5. Add `implements` to Relationships section
+6. Add complete `integrity` section
+7. Add complete `constitutional_conformance` section
+8. Update version prefix as appropriate (XLIB, XGOV, etc.)
+
+---
+
+## 15. Evolution
 
 Changes to this contract require:
 
@@ -259,15 +431,16 @@ Backward compatibility is not guaranteed.
 
 ---
 
-## 13. Final Assertion
+## 16. Final Assertion
 
-A standard without a compliant header is not a standard.
+A document without a compliant header is not a valid Xonaix document.
 
 The header is the identity anchor for machine and human reasoning.
 
-Machine-first, human-readable. This is the Xonaix way.
+Machine-first, human-readable, cryptographically verifiable. This is the Xonaix way.
 
 ---
 
 *Governance Contract*
-*Canonical location: \`specs/_governance/LIBRARY_STANDARD_HEADER_CONTRACT.md\`*
+*Canonical: `xonaix-library::specs/_governance/LIBRARY_STANDARD_HEADER_CONTRACT.md`*
+*Authority: `xonaix-specs::XONAIX_SELF_GOVERNANCE_CONTRACT.md`*

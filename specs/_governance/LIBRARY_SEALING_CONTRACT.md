@@ -1,9 +1,69 @@
+---
+schema: "xonaix-document-header"
+schema_version: "2.0"
+
+# --- Identity ---
+repo: "xonaix-library"
+path: "specs/_governance/LIBRARY_SEALING_CONTRACT.md"
+unit_id: "governance/library/sealing-contract"
+title: "Library Sealing Contract"
+document_type: "contract"
+language: "en"
+
+# --- Version ---
+version: "XGOV-1.0.0"
+baseline: null
+status: "active"
+
+# --- Classification ---
+trust_class: null
+classification: "internal"
+compliance: []
+
+# --- Ownership ---
+owner: "Founder"
+approved_by: "Founder"
+authority_tier: "T1"
+
+# --- Authority ---
+authority:
+  repo: "xonaix-specs"
+  ref: "XONAIX_SELF_GOVERNANCE_CONTRACT.md"
+  version: null
+
+# --- Relationships ---
+depends_on: []
+supersedes: null
+superseded_by: null
+implements: []
+
+# --- Integrity ---
+integrity:
+  hash_alg: null
+  content_hash: null
+  signature: null
+  signed_by: null
+  signed_at: null
+
+# --- Constitutional Conformance ---
+constitutional_conformance:
+  constitution_version: null
+  constitution_hash: null
+  zero_point_version: null
+  zero_point_hash: null
+  deviations: []
+  last_verified: null
+  verified_by: null
+
+# --- Lifecycle ---
+created: "2025-12-31T00:00:00Z"
+last_updated: "2025-12-31T22:00:00Z"
+---
+
 # LIBRARY SEALING CONTRACT
 
-Status: BINDING
-Authority Level: Governance Contract
-Applies to: Xonaix Library Repository
-Authority: xonaix-specs/_governance/XONAIX_SELF_GOVERNANCE_CONTRACT.md
+**Scope:** Xonaix Library Repository
+**Authority:** xonaix-specs/_governance/XONAIX_SELF_GOVERNANCE_CONTRACT.md
 
 ---
 
@@ -252,4 +312,5 @@ It is truth preservation.
 ---
 
 *Governance Contract*
-*Canonical location: `specs/_governance/LIBRARY_SEALING_CONTRACT.md`*
+*Canonical: `xonaix-library::specs/_governance/LIBRARY_SEALING_CONTRACT.md`*
+*Authority: `xonaix-specs::XONAIX_SELF_GOVERNANCE_CONTRACT.md`*
