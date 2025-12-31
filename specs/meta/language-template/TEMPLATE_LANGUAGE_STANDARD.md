@@ -7,17 +7,13 @@ status: "active"
 owner: "Founder"
 last_updated: "2025-12-31"
 ---
-# The Xonaix Way
-## Language Standards: [LANGUAGE_NAME]
+# Language Standard Template
 
-**Version:** B-5.8.5
-**Status:** [Interim/Active]
-**Core-Compatible:** 5.7.0
-**Trust Class:** L[1-4]
-**Created:** [Month Year]
-**Last Reviewed:** [Month Year]
+## [LANGUAGE_NAME] Language Standard
 
-*This document implements The Xonaix Way B-5.8.5 principles for [LANGUAGE_NAME] projects.*
+**For principles:** See THE_XONAIX_WAY.md in xonaix-specs/core.
+
+**For cross-language requirements:** See STANDARDS_INDEX.md.
 
 ---
 
@@ -26,53 +22,38 @@ last_updated: "2025-12-31"
 | Field | Value |
 |-------|-------|
 | Language | [LANGUAGE_NAME] |
-| Status | **[Interim/Active]** ([Primary/Secondary/Domain]) |
-| Version | B-5.8.5 |
-| Core-Compatible | 5.7.0 |
+| Version | 1.0.0 |
 | Trust Class | L[1-4] |
-| Created | [Month Year] |
-| Last Reviewed | [Month Year] |
-| Minimum Version | [Language version requirement] |
-| Related Standards | [Links to related standards] |
-
-**Prerequisites:** Read [THE_XONAIX_WAY.md](THE_XONAIX_WAY.md) first. This document assumes familiarity with the 9 Principles.
-
-**Language Policy:** [Describe this language's role in the Xonaix ecosystem - Primary/Secondary/Domain/Deprecated]
+| Status | [Active/Deprecated] |
+| Owner | Founder |
+| Last Updated | [YYYY-MM-DD] |
 
 ---
 
-## Trust Class (MANDATORY)
+## SECTION 1: TRUST CLASS
 
 | Attribute | Value |
 |-----------|-------|
 | Trust Class | L[1-4] |
 | Classification | [Constitutional/Deterministic/Orchestration/Interface] |
 
-### Trust Class Implications
-
-[Explain what this language MAY and MAY NOT do at this trust class]
-
-### What L[X] May Do
+### What This Trust Class May Do
 
 - [Capability 1]
 - [Capability 2]
 
-### What L[X] May NOT Do
+### What This Trust Class May NOT Do
 
 - [Restriction 1]
 - [Restriction 2]
 
 ---
 
-## XCLib Integration (MANDATORY for L1-L3)
+## SECTION 2: CROSS-LANGUAGE REQUIREMENTS
 
-**Authority:** Founder Ruling 2025-003(c) — Attested Capability
+*Implementation of requirements from STANDARDS_INDEX.md.*
 
-### Binding Type
-
-[Direct / WASM Binding / Host Delegation / Not Applicable]
-
-### Permitted Crypto Operations
+### 2.1 XCLib Integration
 
 | Operation | Permitted | Method |
 |-----------|-----------|--------|
@@ -81,514 +62,220 @@ last_updated: "2025-12-31"
 | Signing | [Yes/No] | [How] |
 | Verification | [Yes/No] | [How] |
 
-### Prohibited Patterns
-
-[List patterns that violate XCLib exclusivity]
-
-### Enforcement
-
-[How violations are detected - linting, CI, review]
-
----
-
-## Numeric Policy (MANDATORY)
-
-**Authority:** Founder Ruling 2025-003(a) — Determinism
-
-### Forbidden Types
-
-| Type | Reason |
-|------|--------|
-| [e.g., f32, f64] | [IEEE 754 non-determinism] |
-
-### Required Representations
-
-| Use Case | Required Type | Example |
-|----------|---------------|---------|
-| Currency | [e.g., i64 cents] | `amount_cents: i64` |
-| Percentages | [e.g., basis points] | `rate_bps: u32` |
-| Decimals | [e.g., string] | `value: "3.14159"` |
-
-### Enforcement
-
-[Linting rules, CI checks]
-
----
-
-## Capability & Posture Handling (MANDATORY)
-
-**Authority:** Constitution Article I, §4 — Zero Trust
-
-### Obtaining Posture
-
-[How code in this language obtains current capability class and trust posture]
-
-### Verification Pattern
-
+**Prohibited Patterns:**
 ```[language]
-// Example code showing proper capability verification
+// Patterns that violate XCLib exclusivity
 ```
 
-### Prohibited Patterns
+### 2.2 Numeric Policy
 
-[Patterns that infer or assume authority]
+| Type | Status | Alternative |
+|------|--------|-------------|
+| [e.g., f32] | Forbidden | [e.g., i64] |
 
-### Posture Degradation
+**Required Representations:**
+```[language]
+// Correct numeric handling
+amount_cents: i64  // NOT amount: f64
+```
 
-[What happens when posture is unavailable or downgraded]
+### 2.3 Authority Verification
 
----
+Authority must never be inferred. Always verify cryptographic proofs.
 
-## Error Handling (MANDATORY)
+```[language]
+// CORRECT: Verify proof
+fn check_authority(proof: &Proof) -> Result<Authority> {
+    xclib::verify(proof)?
+}
 
-**Authority:** Founder Ruling 2025-003(b) — Bounded Error Surfaces
+// FORBIDDEN: Infer from context
+fn check_authority(role: &str) -> bool {
+    role == "admin"  // NO!
+}
+```
 
-### Error Strategy
+### 2.4 Error Handling
 
 | Context | Strategy |
 |---------|----------|
 | L1/L2 paths | [e.g., panic=abort] |
 | Public API | [e.g., Result types] |
-| External boundary | [e.g., mapped to PublicErrorCode] |
-
-### Bounded Error Codes
-
-[Define the public error codes for this language]
-
-### Prohibited Patterns
-
-[Patterns that leak information through errors]
+| Boundary | [e.g., mapped to PublicErrorCode] |
 
 ---
 
-## Generated Code Accountability (MANDATORY)
+## SECTION 3: PRINCIPLE IMPLEMENTATION
 
-**Authority:** Constitutional Actor Model
+*How this language implements principles from THE_XONAIX_WAY.md.*
 
-### Applicability
-
-This standard applies equally to:
-- Human-written code
-- Forge-generated code
-- Agent-generated code
-- Template-generated code
-
-### Requirements
-
-Generated code MUST:
-1. Declare target trust class
-2. Declare intended authority scope
-3. Pass all CI checks (same as human code)
-4. Include provenance metadata
-
-### No Exceptions
-
-"Generated" status does not reduce requirements or bypass review.
-
-**Language Justification:** [Quantifiable reasons for using this language]
-- Performance: [Benchmark data if applicable]
-- Ecosystem: [Library availability, tooling maturity]
-- Team expertise: [Current capabilities]
-- Use case fit: [Why this language for this domain]
+| Principle | Implementation |
+|-----------|----------------|
+| Correct Over Fast | [How this language ensures correctness] |
+| Explicit Over Implicit | [How this language avoids magic] |
+| Automated Over Vigilant | [Tooling: linters, formatters, CI] |
+| Secure By Default | [Security patterns] |
+| Composable Over Clever | [Modularity patterns] |
+| Fail Loud | [Error handling patterns] |
+| Xona Augments, Human Decides | [Xona collaboration patterns] |
+| Future-Proof Over Trend | [Stability practices] |
+| Nothing Lost, Ever | [Persistence, durability patterns] |
 
 ---
 
-## Principle Mapping
+## SECTION 4: PROJECT CONFIGURATION
 
-| Principle | [LANGUAGE_NAME] Implementation |
-|-----------|-------------------------------|
-| 1. Correct Over Fast | [How this language ensures correctness] |
-| 2. Explicit Over Implicit | [How this language avoids magic] |
-| 3. Automated Over Vigilant | [Tooling: linters, formatters, CI] |
-| 4. Secure By Default | [Security patterns, input validation] |
-| 5. Composable Over Clever | [Modularity patterns] |
-| 6. Fail Loud | [Error handling patterns] |
-| 7. Xona Augments, Human Decides | [Xona collaboration patterns] |
-| 8. Future-Proof Over Trend | [Stability practices] |
-| 9. Nothing Lost, Ever | [Persistence, durability, ACK patterns] |
-
----
-
-## Deviation Recording (User Choice)
-
-If a developer chooses to violate a **MUST** requirement, they **MUST** explicitly mark it for the Security Ledger.
-
-**Syntax for [LANGUAGE_NAME]:**
-
-```[language]
-[COMMENT_SYNTAX] XONAIX_DEVIATION: [Reason for deviation - be specific]
-[COMMENT_SYNTAX] LEDGER_ACK: [User_Signature_Hash]
-[Deviating code]
-```
-
-**Example:**
-```[language]
-// XONAIX_DEVIATION: Legacy API requires deprecated pattern - migration planned Q2
-// LEDGER_ACK: sha256:abc123...
-[deviating_code_here]
-```
-
-**This triggers:**
-1. Warning displayed to user
-2. Acknowledgment required
-3. Signature captured
-4. Ledger record created
-5. Artifact marked as "User Choice" (not Xonaix Certified)
-
----
-
-## SECTION 1: PROJECT CONFIGURATION
-
-### 1.1 [Tool/Compiler Configuration]
+### 4.1 Compiler/Runtime Configuration
 
 ```[config-format]
-// Example configuration file
-[configuration here]
+// Configuration here
 ```
 
-### 1.2 Linting Configuration
+### 4.2 Linting Configuration
 
 ```[config-format]
 // Linter configuration
-[configuration here]
 ```
 
-### 1.3 Formatting Configuration
+### 4.3 Formatting Configuration
 
 ```[config-format]
 // Formatter configuration
-[configuration here]
-```
-
-### 1.4 Build/Run Scripts
-
-```json
-{
-  "scripts": {
-    "build": "[build command]",
-    "test": "[test command]",
-    "lint": "[lint command]",
-    "format": "[format command]",
-    "typecheck": "[typecheck command if applicable]"
-  }
-}
 ```
 
 ---
 
-## SECTION 2: NASA/DOD GRADE REQUIREMENTS
+## SECTION 5: TESTING REQUIREMENTS
 
-*Per THE_XONAIX_WAY.md Part IX, all code must meet NASA/DOD grade standards.*
+### 5.1 Coverage Requirements
 
-### 2.1 Bounded Execution
+| Classification | Line Coverage | Branch Coverage |
+|----------------|---------------|-----------------|
+| Development | ≥60% | ≥50% |
+| Production | ≥80% | ≥70% |
+| Controlled | ≥95% | ≥90% |
 
-All loops and iterations MUST have provable termination bounds.
+### 5.2 Bounded Execution
+
+All loops MUST have provable termination bounds.
 
 ```[language]
 // CORRECT: Bounded loop
 const MAX_ITERATIONS = 10_000;
-let count = 0;
-
-for (const item of items) {
-    if (count++ >= MAX_ITERATIONS) {
-        throw new Error(`Exceeded max iterations: ${MAX_ITERATIONS}`);
+for (i, item) in items.iter().enumerate() {
+    if i >= MAX_ITERATIONS {
+        return Err("Exceeded max iterations");
     }
     process(item);
 }
 ```
 
+### 5.3 Assertion Density
+
+Functions MUST include 2+ assertions for preconditions and postconditions.
+
 ```[language]
-// VIOLATION: Unbounded loop
-while (condition) {
-    // No termination guarantee
+fn process(input: Input) -> Output {
+    assert!(input.is_valid());      // Precondition
+
+    let result = compute(input);
+
+    assert!(result.is_finalized()); // Postcondition
+    result
 }
 ```
 
-### 2.2 Assertion Density
+### 5.4 Function Size
 
-Functions MUST include assertions to verify preconditions and postconditions.
+| Level | Limit |
+|-------|-------|
+| MUST | ≤60 lines |
+| SHOULD | ≤30 lines |
 
-| Classification | Requirement |
-|----------------|-------------|
-| Development | SHOULD have 2+ assertions per function |
-| Production | MUST have 2+ assertions per function |
-| Controlled | MUST have 2+ assertions per function |
+### 5.5 Property-Based Testing
 
-```[language]
-function processTransaction(tx: Transaction): Receipt {
-    // Precondition
-    assert(tx.amount > 0, 'Amount must be positive');
-    assert(tx.from !== tx.to, 'Cannot transfer to self');
-    
-    const receipt = executeTransfer(tx);
-    
-    // Postcondition
-    assert(receipt.isFinalized(), 'Receipt must be finalized');
-    assert(receipt.txId === tx.id, 'Receipt must match transaction');
-    
-    return receipt;
-}
-```
-
-### 2.3 Function Size Limits
-
-| Level | Limit | Rationale |
-|-------|-------|-----------|
-| MUST | ≤60 lines | Maximum complexity for reliable review |
-| SHOULD | ≤30 lines | Target for optimal comprehension |
-| IDEAL | ≤15 lines | Single responsibility excellence |
-
-### 2.4 Coverage Requirements
-
-| Classification | Line Coverage | Branch Coverage |
-|----------------|---------------|-----------------|
-| Development | ≥60% SHOULD | ≥50% SHOULD |
-| Production | ≥80% MUST | ≥70% MUST |
-| Controlled | ≥95% MUST | ≥90% MUST |
-
-```[config-format]
-// Test coverage configuration
-coverage: {
-    thresholds: {
-        lines: 95,
-        branches: 90,
-        functions: 95,
-        statements: 95,
-    }
-}
-```
-
-### 2.5 Property-Based Testing
-
-**Controlled classification MUST use property-based tests:**
+Controlled classification MUST use property-based tests.
 
 ```[language]
-// Example with [property-testing-framework]
-test('roundtrip property', () => {
-    fc.assert(
-        fc.property(fc.string(), (input) => {
-            const encoded = encode(input);
-            const decoded = decode(encoded);
-            expect(decoded).toBe(input);
-        })
-    );
-});
+// Example property test
 ```
 
-**Recommended Framework:** [Framework name and installation]
+### 5.6 Mutation Testing
 
-### 2.6 Mutation Testing
-
-**Controlled classification MUST achieve ≥95% mutation score:**
-
-```bash
-# Install mutation testing tool
-[installation command]
-
-# Run mutation testing
-[run command]
-
-# Check score meets threshold
-[verification command]
-```
-
-**Surviving mutants MUST be documented and justified.**
-
-### 2.7 Formal Verification
-
-*If applicable to this language:*
-
-| Scope | Tool | Requirement |
-|-------|------|-------------|
-| Cryptographic operations | [Tool] | MUST for Controlled |
-| State machines | [Tool] | MUST for Controlled |
-| Concurrent code | [Tool] | SHOULD for Controlled |
-
-### 2.8 Chaos Testing
-
-**Controlled classification MUST implement chaos testing:**
-
-```[language]
-// Example: Network failure test
-test('handles network failure gracefully', async () => {
-    // Inject fault
-    mockFetch.mockRejectedValue(new Error('Network failure'));
-    
-    // Verify graceful handling
-    await expect(fetchData()).rejects.toThrow('Network failure');
-    
-    // Verify no data loss (Principle 9)
-    expect(pendingQueue.length).toBeGreaterThan(0);
-});
-```
+Controlled classification MUST achieve ≥95% mutation score.
 
 ---
 
-## SECTION 3: ERROR HANDLING
+## SECTION 6: SECURITY
 
-### 3.1 MUST: Explicit Error Handling
+### 6.1 Input Validation
+
+All external input MUST be validated before use.
 
 ```[language]
-// CORRECT: Explicit error handling
-function process(): Result<Output, Error> {
-    try {
-        const data = fetchData();
-        return { success: true, data: transform(data) };
-    } catch (e) {
-        return { success: false, error: new ProcessError('Failed', e) };
-    }
+fn process_input(input: RawInput) -> Result<ValidatedInput> {
+    let validated = schema.validate(input)?;
+    Ok(validated)
 }
 ```
 
-### 3.2 MUST NOT: Silent Swallowing
-
-```[language]
-// VIOLATION: Empty catch
-try {
-    mightFail();
-} catch (e) {
-    // Silent - FORBIDDEN
-}
-
-// VIOLATION: Ignore error and continue
-const result = mightFail(); // Unchecked
-```
-
-### 3.3 Error Types
-
-```[language]
-// Define specific error types
-class ProcessError extends Error {
-    constructor(message: string, cause?: Error) {
-        super(message);
-        this.cause = cause;
-        this.name = 'ProcessError';
-    }
-}
-```
-
----
-
-## SECTION 4: SECURITY
-
-### 4.1 Input Validation
-
-All external input MUST be validated before use:
-
-```[language]
-// CORRECT: Validated input
-function processUserInput(input: unknown): ValidatedInput {
-    const parsed = InputSchema.parse(input); // Throws on invalid
-    return parsed;
-}
-```
-
-### 4.2 Cryptography
-
-**Approved Libraries:**
-
-| Purpose | Library | Notes |
-|---------|---------|-------|
-| Hashing | [library] | [notes] |
-| Signatures | [library] | [notes] |
-| Encryption | [library] | [notes] |
-
-**Post-Quantum Cryptography (PQC):**
-
-| Phase | Timeline | Requirement |
-|-------|----------|-------------|
-| Phase 1: Design | v5.0.0 (Now) | SHOULD design for hybrid compatibility |
-| Phase 2: Simulate | 2026 | SHOULD prototype hybrid in staging |
-| Phase 3: Production | 2027 | MUST for Tier 3-4 (hybrid classical + ML-DSA) |
-
-```[language]
-// Current architecture (Phase 1) - Design for hybrid
-interface Signature {
-    classical: ClassicalSignature;  // Always present
-    pqc?: PqcSignature;             // None until Phase 3
-}
-```
-
-### 4.3 Secret Handling
+### 6.2 Secret Handling
 
 ```[language]
 // MUST: Never log secrets
-function authenticate(token: string): void {
-    logger.info('Authenticating user'); // NOT the token
-    // ...
-}
-
-// MUST: Clear secrets when done
-function processSecret(secret: string): void {
-    try {
-        useSecret(secret);
-    } finally {
-        clearMemory(secret); // Language-specific cleanup
-    }
+fn authenticate(token: &str) {
+    log::info!("Authenticating user");  // NOT the token
 }
 ```
 
-### 4.4 FIPS 140-3 Compliance Roadmap
+### 6.3 Approved Crypto Libraries
 
-| Phase | Requirement | Timeline |
-|-------|-------------|----------|
-| Phase 1 | Use libraries wrapping FIPS-validated modules | Immediate |
-| Phase 2 | Document crypto module provenance in SBOM | 2026 |
-| Phase 3 | Full FIPS 140-3 deployment for Controlled | 2027 |
+| Purpose | Library |
+|---------|---------|
+| All crypto | XCLib (required) |
 
 ---
 
-## SECTION 5: NOTHING LOST, EVER (PRINCIPLE 9)
+## SECTION 7: NOTHING LOST, EVER
 
-### 5.1 Message Persistence
+*Implementation of Principle 9.*
 
-Governance-relevant messages MUST be persisted until acknowledged:
+### 7.1 Message Persistence
+
+Governance-relevant messages MUST be persisted until acknowledged.
 
 ```[language]
-// Example: Durable queue pattern
-class DurableQueue {
-    async enqueue(message: Message): Promise<MessageId> {
-        const id = generateId();
-        await this.storage.write(id, message);
-        await this.storage.sync(); // fsync equivalent
-        return id;
-    }
-    
-    async acknowledge(id: MessageId): Promise<void> {
-        await this.storage.delete(id);
-        await this.storage.sync();
-    }
-    
-    async recoverPending(): Promise<Message[]> {
-        return this.storage.readAll(); // All unacknowledged
-    }
+// Durable queue pattern
+async fn enqueue(message: Message) -> MessageId {
+    let id = generate_id();
+    storage.write(id, message).await;
+    storage.sync().await;
+    id
+}
+
+async fn acknowledge(id: MessageId) {
+    storage.delete(id).await;
+    storage.sync().await;
 }
 ```
 
-### 5.2 Recovery Patterns
+### 7.2 Recovery Pattern
 
 ```[language]
 // On startup, recover pending work
-async function startup(): Promise<void> {
-    const pending = await queue.recoverPending();
-    for (const message of pending) {
-        await processWithRetry(message);
+async fn startup() {
+    let pending = queue.recover_pending().await;
+    for message in pending {
+        process_with_retry(message).await;
     }
 }
 ```
 
-### 5.3 Persistence Technologies
-
-| Technology | Use Case | Notes |
-|------------|----------|-------|
-| [Technology 1] | [Use case] | [Notes] |
-| [Technology 2] | [Use case] | [Notes] |
-
 ---
 
-## SECTION 6: DEPENDENCY MANAGEMENT
+## SECTION 8: DEPENDENCY MANAGEMENT
 
-### 6.1 Dependency Policy
+### 8.1 Dependency Policy
 
 | Classification | Requirement |
 |----------------|-------------|
@@ -596,75 +283,16 @@ async function startup(): Promise<void> {
 | Production | MUST use exact versions |
 | Controlled | MUST use exact versions + audit |
 
-### 6.2 Security Auditing
+### 8.2 Security Auditing
 
 ```bash
-# Audit dependencies for vulnerabilities
+# Audit command for this language
 [audit command]
-
-# Generate SBOM
-[sbom command]
-```
-
-### 6.3 Dependency Vetting
-
-**Controlled classification MUST vet dependencies:**
-
-```bash
-# Vetting process
-[vetting commands]
 ```
 
 ---
 
-## SECTION 7: TESTING
-
-### 7.1 Test Structure
-
-```[language]
-describe('ComponentName', () => {
-    describe('methodName', () => {
-        beforeEach(() => {
-            // Setup
-        });
-        
-        it('handles valid input', () => {
-            // Arrange
-            const input = createValidInput();
-            
-            // Act
-            const result = component.methodName(input);
-            
-            // Assert
-            expect(result.success).toBe(true);
-        });
-        
-        it('rejects invalid input', () => {
-            // Arrange
-            const input = createInvalidInput();
-            
-            // Act & Assert
-            expect(() => component.methodName(input)).toThrow();
-        });
-    });
-});
-```
-
-### 7.2 Mocking
-
-```[language]
-// Mock external dependencies
-const mockFetch = jest.fn();
-global.fetch = mockFetch;
-
-beforeEach(() => {
-    mockFetch.mockReset();
-});
-```
-
----
-
-## SECTION 8: CI PIPELINE
+## SECTION 9: CI PIPELINE
 
 ```yaml
 name: CI
@@ -678,217 +306,119 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup [Language]
         uses: [setup-action]
-        with:
-          version: '[version]'
-      
-      - name: Install Dependencies
-        run: [install command]
-      
-      - name: Type Check
-        run: [typecheck command]
-      
+
       - name: Lint
         run: [lint command]
-      
+
       - name: Format Check
-        run: [format check command]
-      
-      - name: Test with Coverage
+        run: [format command]
+
+      - name: Test
         run: [test command]
-      
-      - name: Check Coverage Thresholds
-        run: |
-          # Verify coverage meets thresholds
-          [coverage check command]
-      
+
       - name: Security Audit
         run: [audit command]
-      
+
       - name: Build
         run: [build command]
-
-  # Controlled classification only
-  controlled-checks:
-    runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.labels.*.name, 'controlled')
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Mutation Testing
-        run: |
-          [mutation testing command]
-          # Fail if score < 95%
-      
-      - name: Property-Based Tests
-        run: [property test command]
 ```
 
 ---
 
-## SECTION 9: COMMON CRITERIA EAL4 COMPATIBILITY
+## SECTION 10: DEVIATION RECORDING
 
-**Controlled systems SHOULD be designed for CC EAL4 evaluation compatibility:**
+If a developer must violate a MUST requirement, they MUST mark it explicitly.
 
-- Maintain Security Target documentation
-- Document all security functions with functional specifications
-- Keep design documentation traceable to requirements
-- Collect test evidence systematically
-- Perform ongoing vulnerability analysis
+```[language]
+// XONAIX_DEVIATION: [Reason for deviation]
+// LEDGER_ACK: [signature_hash]
+[deviating code]
+```
+
+This triggers:
+1. Warning displayed
+2. Acknowledgment required
+3. Ledger record created
+4. Artifact marked as "User Choice"
 
 ---
 
-## Xona Prompt Appendix
+## SECTION 11: XONA PROMPT APPENDIX
 
 *Add to base prompt when working with [LANGUAGE_NAME].*
 
 ```
-[LANGUAGE_NAME] v5.0.0 REQUIREMENTS:
+[LANGUAGE_NAME] REQUIREMENTS:
 
-NOTE: [Language role - Primary/Secondary/Domain/etc.]
+TRUST CLASS: L[X]
 
 FORBIDDEN:
-- [Forbidden pattern 1]
-- [Forbidden pattern 2]
-- [Forbidden pattern 3]
+- [Pattern 1]
+- [Pattern 2]
 
 REQUIRED:
-- [Required pattern 1]
-- [Required pattern 2]
-- [Required pattern 3]
+- [Pattern 1]
+- [Pattern 2]
 
-NASA/DOD GRADE:
+TESTING (Controlled):
 - Bounded loops: ALL loops MUST have MAX_* constants
-- Assertion density: 2+ assertions per function
+- Assertion density: 2+ per function
 - Function size: ≤60 lines MUST, ≤30 lines SHOULD
-- Line coverage: ≥95% for Controlled
-- Branch coverage: ≥90% for Controlled
-- Property tests: MUST for Controlled
-- Mutation testing: ≥95% score for Controlled
-- Chaos testing: MUST for Controlled
-
-CRYPTO:
-- [Crypto requirements specific to language]
-- Phase 3 (2027): Hybrid classical + ML-DSA for Tier 3-4
-
-PRINCIPLE 9 (NOTHING LOST):
-- [Persistence patterns for this language]
-- [ACK-based messaging patterns]
-- [Recovery patterns]
-
-CONTROLLED CLASSIFICATION CHECKLIST:
-[ ] All loops bounded
-[ ] 2+ assertions per function
-[ ] Functions ≤60 lines
-[ ] Coverage ≥95%/90%
-[ ] Property-based tests
-[ ] Mutation score ≥95%
-[ ] Chaos tests implemented
-[ ] Dependencies vetted
+- Line coverage: ≥95%
+- Branch coverage: ≥90%
+- Mutation score: ≥95%
 
 FLAG THESE VIOLATIONS:
-NO [Violation 1]
-NO [Violation 2]
-NO [Violation 3]
+NO [violation 1]
+NO [violation 2]
 ```
 
 ---
 
-## Quick Reference
-
-### Allowed Patterns
-
-```[language]
-// [Good pattern 1]
-// [Good pattern 2]
-// [Good pattern 3]
-```
-
-### Forbidden Patterns
-
-```[language]
-// [Bad pattern 1]
-// [Bad pattern 2]
-// [Bad pattern 3]
-```
-
----
-
-## Graduation Checklist
+## SECTION 12: GRADUATION CHECKLIST
 
 Before this standard graduates from Draft to Active:
 
 **Core Requirements:**
-- [ ] All 9 Principles mapped with concrete implementations
+- [ ] Trust Class declared
+- [ ] All Cross-Language Requirements implemented
+- [ ] All Principles mapped with implementations
 - [ ] Deviation Recording syntax defined
-- [ ] Xona Prompt Appendix complete and tested
-- [ ] Changelog started
-- [ ] Core-Compatible set to 5.1.0
+- [ ] Xona Prompt Appendix complete
 
-**NASA/DOD Grade Requirements:**
-- [ ] Bounded loop patterns defined with MAX_* constants
-- [ ] Assertion density requirement (2+ per function) documented
-- [ ] Function size limits defined (≤60 MUST, ≤30 SHOULD)
-- [ ] Coverage thresholds defined (95%/90% for Controlled)
-- [ ] Property-based testing patterns with framework recommendation
-- [ ] Mutation testing integration with ≥95% threshold
-- [ ] Formal verification tools identified (if applicable)
-- [ ] Chaos testing patterns defined
+**Testing Requirements:**
+- [ ] Coverage thresholds defined
+- [ ] Bounded loop patterns defined
+- [ ] Assertion density patterns defined
+- [ ] Property-based testing patterns defined
+- [ ] Mutation testing integration defined
 
-**Security & Compliance:**
-- [ ] PQC hybrid crypto pattern defined (for Tier 3-4)
-- [ ] FIPS 140-3 roadmap documented (if crypto involved)
-- [ ] Principle 9 (Nothing Lost) patterns defined
+**Security Requirements:**
+- [ ] XCLib integration documented
+- [ ] Numeric policy implementation documented
+- [ ] Authority verification patterns documented
 - [ ] Dependency vetting process defined
 
-**Quality Assurance:**
-- [ ] CI pipeline example complete with all checks
-- [ ] At least 3 code examples per major section
-- [ ] Examples tested and verified to work
-- [ ] Common Criteria EAL4 compatibility notes
-- [ ] Error handling patterns complete
-- [ ] Security patterns complete
+**Documentation:**
+- [ ] CI pipeline example complete
+- [ ] At least 3 code examples per section
+- [ ] All examples tested and verified
 
 ---
 
-## Changelog
+## References
 
-### B-5.8.5 (December 2025)
-- **MAJOR:** Added Trust Class section (MANDATORY)
-- **MAJOR:** Added XCLib Integration section (MANDATORY for L1-L3)
-- **MAJOR:** Added Numeric Policy section (MANDATORY)
-- **MAJOR:** Added Capability & Posture Handling section (MANDATORY)
-- **MAJOR:** Added Error Handling section (MANDATORY)
-- **MAJOR:** Added Generated Code Accountability section (MANDATORY)
-- **UPDATED:** Core-Compatible to 5.7.0
-- **ALIGNED:** Cross-language requirements per STANDARDS_INDEX B-5.8.5
-- **Source:** Red-Blue-Black Team synthesis with Founder approval
-
-### v5.2.0 (December 2025)
-- **Red-Blue Team Block 5 Synthesis:**
-- **UPDATED:** Core-Compatible to 5.2.0
-- **ALIGNED:** Cross-references to v5.2.0 ecosystem
-- **ADDED:** XCLib requirement note for canonical operations
-
-### v5.1.0 (December 2025)
-- **PROMOTED:** From DRAFT to Active status
-- **UPDATED:** Core-Compatible to 5.1.0
-- **ALIGNED:** Rainbow Team ratification requirements incorporated
-- **UPDATED:** Graduation checklist reflects current review requirements
-
-### v0.1.0 DRAFT (December 2025)
-- Initial draft release
-- Based on The Xonaix Way v5.0.0
+- **Principles:** THE_XONAIX_WAY.md (xonaix-specs/core)
+- **Cross-Language Requirements:** STANDARDS_INDEX.md
+- **Header Format:** LIBRARY_STANDARD_HEADER_CONTRACT.md
 
 ---
 
-*[LANGUAGE_NAME] Standards B-5.8.5 — Part of The Xonaix Way B-5.8.5*
+*[LANGUAGE_NAME] Language Standard v1.0.0*
 
-*"[Tagline for this language standard]"*
-
-*Xonaix, Inc. — Intelligence, evolved.*
+*Xonaix Library*
