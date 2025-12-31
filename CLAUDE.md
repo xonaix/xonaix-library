@@ -96,6 +96,22 @@ docs(claude): update workflow instructions
 8. Verify post-merge CI
 ```
 
+### Proactive Workflow
+
+After creating a PR and CI passes:
+
+1. Notify human: "PR ready for review"
+2. Set todo to "waiting on human"
+3. **Watch for merge** (poll PR status in background)
+4. When human merges, **proceed automatically**
+5. Verify post-merge CI
+6. Clean up branch
+7. Report completion
+
+Do NOT wait for human to say "continue" - detect the merge and proceed.
+
+See `specs/_roadmap/SESSION_CONTEXT.md` for full workflow patterns.
+
 ## Document Header Schema
 
 All standards use the `xonaix-document-header` schema v2.1. See:
