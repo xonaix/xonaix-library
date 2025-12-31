@@ -48,7 +48,7 @@ Future: OpenWRT refactored by Xonaix Code-Core and Forge as Rust
 
 ### Override Mechanism
 Option A: Explicit command in conversation
-- Human says "Auto-merge this PR"
+- Human says Auto-merge this PR
 - Agent merges when CI green
 - Command becomes part of audit trail
 
@@ -61,10 +61,26 @@ Option A: Explicit command in conversation
 - Allow force push: No
 - Require signed commits: No (add with ZeroPoint later)
 
-## Next Steps
+## Completed Tasks
 
-1. Create CORTEX_GUARDIAN_SPEC.md in _roadmap
-2. Create GIT_WORKFLOW_CONTRACT.md in _governance
-3. Update CLAUDE.md with new workflow
-4. Set up branch protection on xonaix-library
-5. Test the PR workflow
+All governance tasks completed:
+
+1. CORTEX_GUARDIAN_SPEC.md created in _roadmap
+2. GIT_WORKFLOW_CONTRACT.md created in _governance
+3. CLAUDE.md updated with PR workflow requirements
+4. Branch protection enabled on xonaix-library
+5. PR workflow tested (this PR)
+
+## Branch Protection Active
+
+The following rules are now enforced on main:
+
+- Required status checks: build-tools, global-enforcement, test-tools
+- Required approving reviews: 1
+- Dismiss stale reviews: Yes
+- Enforce admins: Yes (even admins must follow rules)
+- Linear history: Yes (squash merge only)
+- Force pushes: Disabled
+- Branch deletions: Disabled
+
+This is the first PR under the new workflow.
