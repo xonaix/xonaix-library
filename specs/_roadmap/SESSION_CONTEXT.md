@@ -1,68 +1,70 @@
-# Session Context - Header Schema v2.1 Implementation
+# Session Context - Git Workflow & Cortex Vision
 
-## Current Status
+## Completed This Session
 
-Session continuation implementing v2.1 header schema with expanded status lifecycle.
+1. Implemented header schema v2.1 with expanded status lifecycle
+2. Built header-validate Rust command
+3. Created _roadmap/ folder with governance specs
+4. Migrated 17 documents to v2.1
+5. CI is green
 
-## Completed Tasks
+## Xonaix Vision: Trust Infrastructure
 
-1. Created _roadmap/ folder structure
-2. Created MULTI_PARTY_GOVERNANCE_SPEC.md - future multi-party approval chains for Org Blades
-3. Created ZEROPOINT_INTEGRATION_SPEC.md - cryptographic ledger integration roadmap
-4. Updated LIBRARY_STANDARD_HEADER_CONTRACT.md to v2.1 with:
-   - Expanded status lifecycle: draft -> internal_review -> proposed -> approved -> sealed -> deprecated -> superseded
-   - Integrity requirements by status (approved = hash, sealed = hash + signature)
-   - Governance debt concept (approved without hash = warning, not failure)
-   - Migration guide from v2.0 to v2.1
+### The Problem (Thanksgiving 2025)
+AWS, Microsoft, Cloudflare all went down in one week - all due to bad decisions.
+Bad configs, unreviewed changes, fat-fingers, rogue actions.
 
-## In Progress
+### The Solution: Xonaix Trust Stack
 
-5. Building header-validate Rust command
-   - Added serde_yaml to Cargo.toml
-   - Creating header.rs module for validation
-   - Will validate all headers against v2.1 schema
-   - Checks: schema, status, integrity requirements, timestamps, etc.
+1. **Everything requires approval** - No unilateral actions
+2. **Everything is signed** - Cryptographic proof of who/when
+3. **Everything is on the ledger** - ZeroPoint immutable audit trail
+4. **Even Founder follows rules** - Leading by example, no exceptions
+5. **Cortex analyzes before merge** - AI guardian catches problems before damage
 
-## Remaining Tasks
+### Cortex Guardian Vision
 
-6. Build governance-report Rust command
-7. Update CI to run new validations
-8. Migrate all documents to v2.1 headers
-9. Regenerate governance manifest
-10. Run doctor and verify
-11. Commit and push changes
-12. Verify CI is green
+Xonaix Cortex analyzes commits and advises if something will cause harm:
+- Bad configs that could cause outages
+- Security vulnerabilities (viruses, zero-days)
+- Code patterns that break systems
+- Hardware configs that destabilize
 
-## Key v2.1 Changes
+**Scale:** From dad at home with OpenWRT + Cortex-Lite to the DOD
+**Goal:** Shield the world so technology keeps people safe, happy, and protected
 
-Status Lifecycle:
-- draft: Work in progress
-- internal_review: Ready for team review
-- proposed: Submitted for formal approval
-- approved: Content locked, awaiting seal (content_hash required)
-- sealed: Signed and immutable (signature required)
-- deprecated: Being phased out (maintains seal)
-- superseded: Replaced by another doc (maintains seal)
+Future: OpenWRT refactored by Xonaix Code-Core and Forge as Rust
 
-Integrity Requirements:
-- draft/internal_review/proposed: No integrity fields required
-- approved: content_hash SHOULD be present (warn if missing)
-- sealed+: content_hash AND signature MUST be present (error if missing)
+## Git Workflow Decisions
 
-## Files Modified This Session
+### Agreed
+- PR-first workflow (no direct to main)
+- Human approval required by default
+- 1-time override only (explicit command in conversation)
+- Conventional Commits for messages
+- Squash merge to main
+- Branch protection enabled
+- CODEOWNERS file
 
-- specs/_roadmap/MULTI_PARTY_GOVERNANCE_SPEC.md (new)
-- specs/_roadmap/ZEROPOINT_INTEGRATION_SPEC.md (new)
-- specs/_governance/LIBRARY_STANDARD_HEADER_CONTRACT.md (updated to v2.1)
-- tools/xonaix-library-tools/Cargo.toml (added serde_yaml)
-- tools/xonaix-library-tools/src/header.rs (in progress)
+### Override Mechanism
+Option A: Explicit command in conversation
+- Human says "Auto-merge this PR"
+- Agent merges when CI green
+- Command becomes part of audit trail
 
-## To Resume
+### Branch Protection Rules
+- Require PR to merge: Yes
+- Require 1 approval: Yes
+- Require status checks: Yes
+- Require linear history: Yes (squash only)
+- Require up-to-date branch: No (avoids friction)
+- Allow force push: No
+- Require signed commits: No (add with ZeroPoint later)
 
-Continue with creating header.rs module for header-validate command.
-The module should:
-1. Parse YAML frontmatter from .md files
-2. Validate against v2.1 schema
-3. Check status-specific integrity requirements
-4. Report errors and warnings
-5. Exit with failure if any errors found
+## Next Steps
+
+1. Create CORTEX_GUARDIAN_SPEC.md in _roadmap
+2. Create GIT_WORKFLOW_CONTRACT.md in _governance
+3. Update CLAUDE.md with new workflow
+4. Set up branch protection on xonaix-library
+5. Test the PR workflow

@@ -1,8 +1,14 @@
 {
   "baseline": "global",
   "domain": "_governance",
-  "file_count": 3,
+  "file_count": 4,
   "files": [
+    {
+      "path": "specs/_governance/GIT_WORKFLOW_CONTRACT.md",
+      "sha256": "405e83469a6562470385068c5f7b4d4c44168359b65579e0da3b4281b35efc78",
+      "size": 7662,
+      "type": "file"
+    },
     {
       "path": "specs/_governance/LIBRARY_SEALING_CONTRACT.md",
       "sha256": "1912a255e5d77a869ddfd7294b23c485e28ec2a0120dc93259fc76d797541e57",
@@ -22,7 +28,7 @@
       "type": "file"
     }
   ],
-  "generated_at": "2025-12-31T22:27:48.593080+00:00",
+  "generated_at": "2025-12-31T23:00:56.332107+00:00",
   "generator": "tools/xonaix-library-tools",
   "manifest_version": "2.0.0"
 }
