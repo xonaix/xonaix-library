@@ -282,6 +282,7 @@ pub fn run(repo_root_arg: Option<String>, _current_only: bool) -> Result<(), Enf
         "specs/_governance/NO_DEBT_RULES.md",
         "specs/_governance/DISTRIBUTION_EXCLUSIONS.md",
         "specs/_governance/LIBRARY_SEALING_CONTRACT.md",
+        "specs/_governance/LIBRARY_STANDARD_HEADER_CONTRACT.md",
         "specs/_governance/XONAIX_SELF_GOVERNANCE_CONTRACT.md",
         "specs/_governance/UNIT_REGISTRY.json",
     ];

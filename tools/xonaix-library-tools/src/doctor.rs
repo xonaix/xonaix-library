@@ -86,6 +86,7 @@ pub fn run(repo_root_arg: Option<String>) -> Result<(), DoctorError> {
         "NO_DEBT_RULES.md",
         "DISTRIBUTION_EXCLUSIONS.md",
         "LIBRARY_SEALING_CONTRACT.md",
+        "LIBRARY_STANDARD_HEADER_CONTRACT.md",
         "XONAIX_SELF_GOVERNANCE_CONTRACT.md",
         "UNIT_REGISTRY.json",
     ];
@@ -137,29 +138,26 @@ pub fn run(repo_root_arg: Option<String>) -> Result<(), DoctorError> {
         None
     };
 
-    // Check 3: Library baseline exists
+    // Check 3: Required directories exist
     println!();
-    println!("[3/5] Checking library baseline...");
-    let baseline_path = specs_dir.join("library").join("CURRENT_BASELINE.txt");
-    if baseline_path.exists() {
-        match fs::read_to_string(&baseline_path) {
-            Ok(content) => {
-                let baseline = content.trim();
-                let baseline_dir = specs_dir.join("library").join(baseline);
-                if baseline_dir.exists() {
-                    println!("PASS: Library baseline {} exists", baseline);
-                } else {
-                    println!("FAIL: Library baseline {} does not exist at {}", baseline, baseline_dir.display());
-                    failed_checks += 1;
-                }
-            }
-            Err(e) => {
-                println!("FAIL: Cannot read CURRENT_BASELINE.txt: {}", e);
-                failed_checks += 1;
-            }
+    println!("[3/5] Checking required directories...");
+    let required_dirs = ["standards", "meta"];
+    let mut missing_dirs: Vec<String> = Vec::new();
+
+    for dir in &required_dirs {
+        let dir_path = specs_dir.join(dir);
+        if !dir_path.exists() {
+            missing_dirs.push(dir.to_string());
         }
+    }
+
+    if missing_dirs.is_empty() {
+        println!("PASS: All required directories exist (standards, meta)");
     } else {
-        println!("FAIL: CURRENT_BASELINE.txt does not exist");
+        for d in &missing_dirs {
+            println!("  Missing: specs/{}", d);
+        }
+        println!("FAIL: Required directories missing");
         failed_checks += 1;
     }
 

@@ -1,7 +1,7 @@
 {
   "baseline": "global",
   "domain": "_governance",
-  "file_count": 6,
+  "file_count": 7,
   "files": [
     {
       "path": "specs/_governance/AUDIT_CONTRACT.md",
@@ -22,6 +22,12 @@
       "type": "file"
     },
     {
+      "path": "specs/_governance/LIBRARY_STANDARD_HEADER_CONTRACT.md",
+      "sha256": "71e0487eddfb6f78b1b1055f54b0a83324adce038bbb0ca79d7a40330d2d5ba8",
+      "size": 3413,
+      "type": "file"
+    },
+    {
       "path": "specs/_governance/NO_DEBT_RULES.md",
       "sha256": "eafd058f277d949bc10dae28ec66f3bd698212f2f39132a2dc9fdaf70248ff00",
       "size": 3986,
@@ -29,8 +35,8 @@
     },
     {
       "path": "specs/_governance/UNIT_REGISTRY.json",
-      "sha256": "30044b55f7633d8c44bb6e69b55b93fb28d3dabfe88fdabdc1f855c90d989926",
-      "size": 3142,
+      "sha256": "279361b864dc4323763a1af46825675a84492321f5ff4ce513bfbc17b7fda222",
+      "size": 3515,
       "type": "file"
     },
     {
@@ -40,7 +46,7 @@
       "type": "file"
     }
   ],
-  "generated_at": "2025-12-31T06:06:09.046011+00:00",
+  "generated_at": "2025-12-31T07:16:36.945170+00:00",
   "generator": "tools/xonaix-library-tools",
   "manifest_version": "2.0.0"
 }

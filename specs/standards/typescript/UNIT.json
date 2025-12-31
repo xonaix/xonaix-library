@@ -1,0 +1,13 @@
+{
+  "unit_id": "library/standards/typescript",
+  "unit_type": "standard",
+  "version": "1.0.0",
+  "status": "active",
+  "description": "TypeScript language standard implementing The Xonaix Way principles.",
+  "owner": "Founder",
+  "dependencies": [],
+  "compatibility": {
+    "breaking_changes": "explicit_only",
+    "backward_compatible": true
+  }
+}

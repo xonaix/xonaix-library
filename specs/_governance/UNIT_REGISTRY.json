@@ -2,80 +2,98 @@
   "registry_version": "1.0.0",
   "description": "Authoritative registry of all Xonaix Library units. This file is identity law.",
   "units": {
-    "library/rust/mini-standard": {
-      "path": "specs/library/LIB-1.0.0/standards/rust/mini-standard",
+    "library/standards/rust": {
+      "path": "specs/standards/rust",
       "domain": "library",
       "status": "active",
       "description": "Rust language standard implementing The Xonaix Way"
     },
-    "library/nats/mini-standard": {
-      "path": "specs/library/LIB-1.0.0/standards/nats/mini-standard",
+    "library/standards/c": {
+      "path": "specs/standards/c",
       "domain": "library",
       "status": "active",
-      "description": "NATS messaging standard for L3 orchestration"
+      "description": "C language standard implementing The Xonaix Way"
     },
-    "library/tauri/mini-standard": {
-      "path": "specs/library/LIB-1.0.0/standards/tauri/mini-standard",
+    "library/standards/cpp": {
+      "path": "specs/standards/cpp",
       "domain": "library",
       "status": "active",
-      "description": "Tauri desktop application standard"
+      "description": "C++ language standard implementing The Xonaix Way"
     },
-    "library/sql/mini-standard": {
-      "path": "specs/library/LIB-1.0.0/standards/sql/mini-standard",
+    "library/standards/json": {
+      "path": "specs/standards/json",
       "domain": "library",
       "status": "active",
-      "description": "SQL database standard for L3 data layer"
+      "description": "JSON data format standard implementing The Xonaix Way"
     },
-    "library/yaml/mini-standard": {
-      "path": "specs/library/LIB-1.0.0/standards/yaml/mini-standard",
+    "library/standards/yaml": {
+      "path": "specs/standards/yaml",
       "domain": "library",
       "status": "active",
-      "description": "YAML configuration standard"
+      "description": "YAML data format standard implementing The Xonaix Way"
     },
-    "library/toml/mini-standard": {
-      "path": "specs/library/LIB-1.0.0/standards/toml/mini-standard",
+    "library/standards/toml": {
+      "path": "specs/standards/toml",
       "domain": "library",
       "status": "active",
-      "description": "TOML configuration standard for Rust ecosystem"
+      "description": "TOML configuration standard implementing The Xonaix Way"
     },
-    "library/wasm/mini-standard": {
-      "path": "specs/library/LIB-1.0.0/standards/wasm/mini-standard",
+    "library/standards/sql": {
+      "path": "specs/standards/sql",
       "domain": "library",
       "status": "active",
-      "description": "WebAssembly standard for sandboxed execution"
+      "description": "SQL database standard implementing The Xonaix Way"
     },
-    "library/json/mini-standard": {
-      "path": "specs/library/LIB-1.0.0/standards/json/mini-standard",
+    "library/standards/nats": {
+      "path": "specs/standards/nats",
       "domain": "library",
       "status": "active",
-      "description": "JSON format standard for data interchange"
+      "description": "NATS messaging standard implementing The Xonaix Way"
     },
-    "library/c/mini-standard": {
-      "path": "specs/library/LIB-1.0.0/standards/c/mini-standard",
+    "library/standards/tauri": {
+      "path": "specs/standards/tauri",
       "domain": "library",
       "status": "active",
-      "description": "C language standard for FFI"
+      "description": "Tauri framework standard implementing The Xonaix Way"
     },
-    "library/cpp/mini-standard": {
-      "path": "specs/library/LIB-1.0.0/standards/cpp/mini-standard",
+    "library/standards/wasm": {
+      "path": "specs/standards/wasm",
       "domain": "library",
       "status": "active",
-      "description": "C++ language standard for FFI"
+      "description": "WebAssembly standard implementing The Xonaix Way"
+    },
+    "library/standards/sveltekit": {
+      "path": "specs/standards/sveltekit",
+      "domain": "library",
+      "status": "active",
+      "description": "SvelteKit framework standard implementing The Xonaix Way"
+    },
+    "library/standards/typescript": {
+      "path": "specs/standards/typescript",
+      "domain": "library",
+      "status": "active",
+      "description": "TypeScript language standard implementing The Xonaix Way"
+    },
+    "library/standards/nodejs": {
+      "path": "specs/standards/nodejs",
+      "domain": "library",
+      "status": "active",
+      "description": "Node.js runtime standard implementing The Xonaix Way"
+    },
+    "library/standards/python": {
+      "path": "specs/standards/python",
+      "domain": "library",
+      "status": "active",
+      "description": "Python language standard implementing The Xonaix Way"
     },
     "library/meta/standards-index": {
-      "path": "specs/library/LIB-1.0.0/standards/meta/standards-index",
+      "path": "specs/meta/standards-index",
       "domain": "library",
       "status": "active",
-      "description": "Standards index registry"
-    },
-    "library/meta/xonaix-way": {
-      "path": "specs/library/LIB-1.0.0/standards/meta/xonaix-way",
-      "domain": "library",
-      "status": "active",
-      "description": "The Xonaix Way engineering philosophy"
+      "description": "Index of all Xonaix Library language standards"
     },
     "library/meta/language-template": {
-      "path": "specs/library/LIB-1.0.0/standards/meta/language-template",
+      "path": "specs/meta/language-template",
       "domain": "library",
       "status": "active",
       "description": "Template for creating new language standards"
