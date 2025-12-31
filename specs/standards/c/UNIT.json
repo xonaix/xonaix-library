@@ -1,7 +1,7 @@
 {
   "unit_id": "library/standards/c",
   "unit_type": "standard",
-  "version": "1.0.0",
+  "version": "XLIB-1.0.0",
   "status": "active",
   "description": "C language standard implementing The Xonaix Way principles for C development.",
   "owner": "Founder",

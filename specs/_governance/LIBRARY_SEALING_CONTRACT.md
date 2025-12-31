@@ -3,7 +3,7 @@
 Status: BINDING
 Authority Level: Governance Contract
 Applies to: Xonaix Library Repository
-Authority: XONAIX_SELF_GOVERNANCE_CONTRACT.md
+Authority: xonaix-specs/_governance/XONAIX_SELF_GOVERNANCE_CONTRACT.md
 
 ---
 
@@ -171,7 +171,7 @@ A sealed Library release is valid only if:
 - All referenced unit manifests exist
 - All unit manifest hashes match file contents
 - No extra or missing files exist
-- The signer is authorized per AUDIT_CONTRACT.md
+- The signer is authorized per xonaix-specs/_governance/AUDIT_CONTRACT.md
 
 Verification MUST fail on any discrepancy.
 
@@ -197,33 +197,14 @@ Library versioning is independent of:
 
 ### 9.2 Unit Versioning
 
-Each unit maintains its own version and changelog.
+Each unit maintains its own version.
 
 Unit version changes do not imply Library version changes unless included in a BOM.
 
 ---
 
-## 10. Change Logs
 
-### 10.1 Unit Change Logs
-
-Each unit SHALL maintain a CHANGELOG.md describing:
-
-- What changed
-- Why it changed
-- Compatibility notes
-
-### 10.2 Library Change Log
-
-Each Library release SHALL include a Library-level CHANGELOG.md summarizing:
-
-- Included unit changes
-- Added units
-- Deprecated units
-
----
-
-## 11. Air-Gapped and Sovereign Verification
+## 10. Air-Gapped and Sovereign Verification
 
 The Library sealing model is designed to support:
 
@@ -235,7 +216,7 @@ No network access is required to verify a sealed Library release.
 
 ---
 
-## 12. Enforcement
+## 11. Enforcement
 
 This contract is:
 
@@ -248,7 +229,7 @@ Any violation constitutes governance debt and MUST be remediated before further 
 
 ---
 
-## 13. Amendments
+## 12. Amendments
 
 Changes to this contract require:
 
@@ -260,7 +241,7 @@ No silent amendments are permitted.
 
 ---
 
-## 14. Final Assertion
+## 13. Final Assertion
 
 The Xonaix Library is not a convenience artifact.
 It is a durable authority surface.

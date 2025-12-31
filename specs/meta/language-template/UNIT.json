@@ -1,7 +1,7 @@
 {
   "unit_id": "library/meta/language-template",
   "unit_type": "standard",
-  "version": "1.0.0",
+  "version": "XLIB-1.0.0",
   "status": "active",
   "description": "Template for creating new Xonaix Library language standards.",
   "owner": "Founder",

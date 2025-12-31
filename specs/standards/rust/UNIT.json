@@ -1,7 +1,7 @@
 {
   "unit_id": "library/standards/rust",
   "unit_type": "standard",
-  "version": "1.0.0",
+  "version": "XLIB-1.0.0",
   "status": "active",
   "description": "Rust language standard implementing The Xonaix Way principles for Rust development.",
   "owner": "Founder",

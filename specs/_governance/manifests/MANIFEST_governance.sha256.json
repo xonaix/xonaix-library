@@ -1,24 +1,12 @@
 {
   "baseline": "global",
   "domain": "_governance",
-  "file_count": 7,
+  "file_count": 3,
   "files": [
     {
-      "path": "specs/_governance/AUDIT_CONTRACT.md",
-      "sha256": "0c1793791e243ff9e8d9f654a4b781f7a00ef08658df208967468b60cae8852d",
-      "size": 5387,
-      "type": "file"
-    },
-    {
-      "path": "specs/_governance/DISTRIBUTION_EXCLUSIONS.md",
-      "sha256": "0a5cfc567e0e610cabfb01689d4b4bcd76ad52909a3bba9cd586767771457324",
-      "size": 2579,
-      "type": "file"
-    },
-    {
       "path": "specs/_governance/LIBRARY_SEALING_CONTRACT.md",
-      "sha256": "c2e13e2dc3457dc3407bf63749023f3572a074c838a637817877dfdefd6dfe25",
-      "size": 5317,
+      "sha256": "398848e1f87a151ee2efcbaa4671d6d8f17037faf90c2a186dd994bb4ec177da",
+      "size": 5029,
       "type": "file"
     },
     {
@@ -28,25 +16,13 @@
       "type": "file"
     },
     {
-      "path": "specs/_governance/NO_DEBT_RULES.md",
-      "sha256": "b6c19ae959db35261cc0a525b938e49fd7b2727c14233b2ddeb91a50fe226994",
-      "size": 3991,
-      "type": "file"
-    },
-    {
       "path": "specs/_governance/UNIT_REGISTRY.json",
       "sha256": "279361b864dc4323763a1af46825675a84492321f5ff4ce513bfbc17b7fda222",
       "size": 3515,
       "type": "file"
-    },
-    {
-      "path": "specs/_governance/XONAIX_SELF_GOVERNANCE_CONTRACT.md",
-      "sha256": "ccc98f58daf6fcbd2a7df366452e4dd7b2abe7051a20f1e33e2ea6fcd3ba66aa",
-      "size": 9943,
-      "type": "file"
     }
   ],
-  "generated_at": "2025-12-31T18:48:58.890552+00:00",
+  "generated_at": "2025-12-31T19:01:11.434100+00:00",
   "generator": "tools/xonaix-library-tools",
   "manifest_version": "2.0.0"
 }

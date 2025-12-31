@@ -1,7 +1,7 @@
 {
   "unit_id": "library/meta/standards-index",
   "unit_type": "standard",
-  "version": "1.0.0",
+  "version": "XLIB-1.0.0",
   "status": "active",
   "description": "Index of all Xonaix Library language standards.",
   "owner": "Founder",

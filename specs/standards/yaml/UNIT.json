@@ -1,7 +1,7 @@
 {
   "unit_id": "library/standards/yaml",
   "unit_type": "standard",
-  "version": "1.0.0",
+  "version": "XLIB-1.0.0",
   "status": "active",
   "description": "YAML data format standard implementing The Xonaix Way principles.",
   "owner": "Founder",
