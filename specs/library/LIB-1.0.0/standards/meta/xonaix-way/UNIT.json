@@ -1,0 +1,13 @@
+{
+  "unit_id": "library/meta/xonaix-way",
+  "unit_type": "standard",
+  "version": "1.0.0",
+  "status": "active",
+  "description": "The Xonaix Way engineering philosophy defining the 9 Principles.",
+  "owner": "Founder",
+  "dependencies": [],
+  "compatibility": {
+    "breaking_changes": "explicit_only",
+    "backward_compatible": true
+  }
+}

@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-tools:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build xonaix-library-tools
+        run: cargo build --release --manifest-path tools/xonaix-library-tools/Cargo.toml
+
+      - name: Upload binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: xonaix-library-tools
+          path: tools/xonaix-library-tools/target/release/xonaix-library-tools
+
+  test-tools:
+    runs-on: ubuntu-latest
+    needs: build-tools
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Run tests
+        run: cargo test --manifest-path tools/xonaix-library-tools/Cargo.toml
+
+  global-enforcement:
+    runs-on: ubuntu-latest
+    needs: build-tools
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download binary
+        uses: actions/download-artifact@v4
+        with:
+          name: xonaix-library-tools
+          path: bin/
+
+      - name: Make binary executable
+        run: chmod +x bin/xonaix-library-tools
+
+      - name: Run enforcement checks
+        run: bin/xonaix-library-tools enforce --current-only
+
+      - name: Run unit validation
+        run: bin/xonaix-library-tools unit-validate
+
+      - name: Run graph verification
+        run: bin/xonaix-library-tools graph-verify
+
+      - name: Run doctor checks
+        run: bin/xonaix-library-tools doctor
+
+      - name: Check governance manifest drift
+        run: bin/xonaix-library-tools generate-manifest --governance --check

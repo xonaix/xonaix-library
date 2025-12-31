@@ -1,0 +1,13 @@
+# Rust build artifacts
+target/
+
+# Binary output
+bin/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

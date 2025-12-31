@@ -1,0 +1,13 @@
+{
+  "unit_id": "library/nats/mini-standard",
+  "unit_type": "standard",
+  "version": "1.0.0",
+  "status": "active",
+  "description": "NATS messaging standard for L3 orchestration and transport layer.",
+  "owner": "Founder",
+  "dependencies": [],
+  "compatibility": {
+    "breaking_changes": "explicit_only",
+    "backward_compatible": true
+  }
+}

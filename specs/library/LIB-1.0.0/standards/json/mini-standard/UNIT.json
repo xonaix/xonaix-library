@@ -1,0 +1,13 @@
+{
+  "unit_id": "library/json/mini-standard",
+  "unit_type": "standard",
+  "version": "1.0.0",
+  "status": "active",
+  "description": "JSON format standard for data interchange.",
+  "owner": "Founder",
+  "dependencies": [],
+  "compatibility": {
+    "breaking_changes": "explicit_only",
+    "backward_compatible": true
+  }
+}

@@ -1,0 +1,40 @@
+[package]
+name = "xonaix-library-tools"
+version = "0.1.0"
+edition = "2024"
+authors = ["Xonaix, Inc."]
+description = "Governance and specification tooling for xonaix-library"
+license = "LicenseRef-Proprietary"
+readme = "README.md"
+keywords = ["library", "standards", "governance", "manifest", "verification"]
+categories = ["command-line-utilities"]
+
+[package.metadata.xonaix]
+trust_class = "L2"
+baseline = "LIB-1.0.0"
+
+[[bin]]
+name = "xonaix-library-tools"
+path = "src/main.rs"
+
+[dependencies]
+sha2 = "0.10"
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+walkdir = "2"
+regex = "1"
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "2"
+
+[profile.release]
+panic = "abort"
+
+[lints.rust]
+unsafe_code = "forbid"
+unused_must_use = "deny"
+unused_results = "deny"
+
+[lints.clippy]
+unwrap_used = "deny"
+expect_used = "deny"

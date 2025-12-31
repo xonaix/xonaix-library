@@ -1,0 +1,86 @@
+{
+  "registry_version": "1.0.0",
+  "description": "Authoritative registry of all Xonaix Library units. This file is identity law.",
+  "units": {
+    "library/rust/mini-standard": {
+      "path": "specs/library/LIB-1.0.0/standards/rust/mini-standard",
+      "domain": "library",
+      "status": "active",
+      "description": "Rust language standard implementing The Xonaix Way"
+    },
+    "library/nats/mini-standard": {
+      "path": "specs/library/LIB-1.0.0/standards/nats/mini-standard",
+      "domain": "library",
+      "status": "active",
+      "description": "NATS messaging standard for L3 orchestration"
+    },
+    "library/tauri/mini-standard": {
+      "path": "specs/library/LIB-1.0.0/standards/tauri/mini-standard",
+      "domain": "library",
+      "status": "active",
+      "description": "Tauri desktop application standard"
+    },
+    "library/sql/mini-standard": {
+      "path": "specs/library/LIB-1.0.0/standards/sql/mini-standard",
+      "domain": "library",
+      "status": "active",
+      "description": "SQL database standard for L3 data layer"
+    },
+    "library/yaml/mini-standard": {
+      "path": "specs/library/LIB-1.0.0/standards/yaml/mini-standard",
+      "domain": "library",
+      "status": "active",
+      "description": "YAML configuration standard"
+    },
+    "library/toml/mini-standard": {
+      "path": "specs/library/LIB-1.0.0/standards/toml/mini-standard",
+      "domain": "library",
+      "status": "active",
+      "description": "TOML configuration standard for Rust ecosystem"
+    },
+    "library/wasm/mini-standard": {
+      "path": "specs/library/LIB-1.0.0/standards/wasm/mini-standard",
+      "domain": "library",
+      "status": "active",
+      "description": "WebAssembly standard for sandboxed execution"
+    },
+    "library/json/mini-standard": {
+      "path": "specs/library/LIB-1.0.0/standards/json/mini-standard",
+      "domain": "library",
+      "status": "active",
+      "description": "JSON format standard for data interchange"
+    },
+    "library/c/mini-standard": {
+      "path": "specs/library/LIB-1.0.0/standards/c/mini-standard",
+      "domain": "library",
+      "status": "active",
+      "description": "C language standard for FFI"
+    },
+    "library/cpp/mini-standard": {
+      "path": "specs/library/LIB-1.0.0/standards/cpp/mini-standard",
+      "domain": "library",
+      "status": "active",
+      "description": "C++ language standard for FFI"
+    },
+    "library/meta/standards-index": {
+      "path": "specs/library/LIB-1.0.0/standards/meta/standards-index",
+      "domain": "library",
+      "status": "active",
+      "description": "Standards index registry"
+    },
+    "library/meta/xonaix-way": {
+      "path": "specs/library/LIB-1.0.0/standards/meta/xonaix-way",
+      "domain": "library",
+      "status": "active",
+      "description": "The Xonaix Way engineering philosophy"
+    },
+    "library/meta/language-template": {
+      "path": "specs/library/LIB-1.0.0/standards/meta/language-template",
+      "domain": "library",
+      "status": "active",
+      "description": "Template for creating new language standards"
+    }
+  },
+  "reserved": [],
+  "deprecated": []
+}

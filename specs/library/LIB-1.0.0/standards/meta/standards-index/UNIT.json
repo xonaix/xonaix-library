@@ -1,0 +1,13 @@
+{
+  "unit_id": "library/meta/standards-index",
+  "unit_type": "standard",
+  "version": "1.0.0",
+  "status": "active",
+  "description": "Standards index registry providing overview of all language standards.",
+  "owner": "Founder",
+  "dependencies": [],
+  "compatibility": {
+    "breaking_changes": "explicit_only",
+    "backward_compatible": true
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "unit_id": "library/wasm/mini-standard",
+  "unit_type": "standard",
+  "version": "1.0.0",
+  "status": "active",
+  "description": "WebAssembly standard for L1/L2 reserved sandboxed execution.",
+  "owner": "Founder",
+  "dependencies": [],
+  "compatibility": {
+    "breaking_changes": "explicit_only",
+    "backward_compatible": true
+  }
+}
