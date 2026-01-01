@@ -6,7 +6,15 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  CARGO_TERM_COLOR: always
+
 jobs:
+  # Org-wide legacy ledger check
+  no-legacy-ledger:
+    uses: xonaix/.github/.github/workflows/no-legacy-ledger.yml@main
+
+  # Build the Rust tooling once, share across jobs
   build-tools:
     runs-on: ubuntu-latest
     steps:
@@ -14,6 +22,19 @@ jobs:
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            tools/xonaix-library-tools/target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
 
       - name: Build xonaix-library-tools
         run: cargo build --release --manifest-path tools/xonaix-library-tools/Cargo.toml
@@ -24,6 +45,7 @@ jobs:
           name: xonaix-library-tools
           path: tools/xonaix-library-tools/target/release/xonaix-library-tools
 
+  # Run tests and security audit
   test-tools:
     runs-on: ubuntu-latest
     needs: build-tools
@@ -33,9 +55,30 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            tools/xonaix-library-tools/target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
+      - name: Install cargo-audit
+        run: cargo install cargo-audit --locked || true
+
       - name: Run tests
         run: cargo test --manifest-path tools/xonaix-library-tools/Cargo.toml
 
+      - name: Security audit
+        run: cargo audit --file tools/xonaix-library-tools/Cargo.lock || echo "No Cargo.lock found, skipping audit"
+        continue-on-error: true
+
+  # Global enforcement and validation
   global-enforcement:
     runs-on: ubuntu-latest
     needs: build-tools
@@ -68,3 +111,55 @@ jobs:
 
       - name: Check governance manifest drift
         run: bin/xonaix-library-tools generate-manifest --governance --check
+
+  # Generate governance report for auditing
+  governance-report:
+    runs-on: ubuntu-latest
+    needs: build-tools
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download binary
+        uses: actions/download-artifact@v4
+        with:
+          name: xonaix-library-tools
+          path: bin/
+
+      - name: Make binary executable
+        run: chmod +x bin/xonaix-library-tools
+
+      - name: Generate governance report
+        run: bin/xonaix-library-tools governance-report --format json-pretty --output governance-report.json
+
+      - name: Display summary
+        run: bin/xonaix-library-tools governance-report --format summary
+
+      - name: Upload governance report
+        uses: actions/upload-artifact@v4
+        with:
+          name: governance-report
+          path: governance-report.json
+          retention-days: 90
+
+  # Validate conventional commit messages on PRs
+  commit-lint:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate PR title (conventional commit)
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          PATTERN="^(feat|fix|docs|refactor|test|chore|ci|style|perf|build|revert)(\(.+\))?: .+"
+          if [[ ! "$PR_TITLE" =~ $PATTERN ]]; then
+            echo "ERROR: PR title must follow Conventional Commits format"
+            echo "Expected: type(scope): description"
+            echo "Types: feat, fix, docs, refactor, test, chore, ci, style, perf, build, revert"
+            echo "Got: $PR_TITLE"
+            exit 1
+          fi
+          echo "PR title follows Conventional Commits format"

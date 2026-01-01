@@ -9,6 +9,7 @@
 //! - graph-verify: Verify dependency graph integrity (DAG, no cycles)
 //! - doctor: Verify environment and library requirements
 //! - header-validate: Validate document headers against v2.1 schema
+//! - governance-report: Generate governance metrics and reports
 
 use clap::{Parser, Subcommand};
 use std::process::ExitCode;
@@ -17,6 +18,7 @@ mod doctor;
 mod enforce;
 mod manifest;
 mod header;
+mod report;
 mod unit;
 
 #[derive(Parser)]
@@ -99,6 +101,21 @@ enum Commands {
         #[arg(long)]
         file: Option<String>,
     },
+
+    /// Generate governance report with metrics for dashboards and audits
+    GovernanceReport {
+        /// Repository root path (default: auto-detect)
+        #[arg(long)]
+        repo_root: Option<String>,
+
+        /// Output format: json, json-pretty, table, summary
+        #[arg(long, default_value = "table")]
+        format: String,
+
+        /// Output file path (prints to stdout if not specified)
+        #[arg(long)]
+        output: Option<String>,
+    },
 }
 
 fn main() -> ExitCode {
@@ -158,6 +175,23 @@ fn main() -> ExitCode {
                 false
             }
         },
+
+        Commands::GovernanceReport { repo_root, format, output } => {
+            let fmt = match format.parse::<report::OutputFormat>() {
+                Ok(f) => f,
+                Err(e) => {
+                    eprintln!("ERROR: {}", e);
+                    return ExitCode::FAILURE;
+                }
+            };
+            match report::run(repo_root, fmt, output) {
+                Ok(()) => true,
+                Err(e) => {
+                    eprintln!("ERROR: {e}");
+                    false
+                }
+            }
+        }
     };
 
     if success {
