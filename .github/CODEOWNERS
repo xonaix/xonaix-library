@@ -1,0 +1,24 @@
+# Xonaix Library Code Owners
+# These owners will be requested for review on PRs
+
+# Default owner for everything
+* @Macman-1
+
+# Governance documents require Founder review
+specs/_governance/ @Macman-1
+
+# Roadmap documents require Founder review  
+specs/_roadmap/ @Macman-1
+
+# Standards require Founder review
+specs/standards/ @Macman-1
+
+# Tools require Founder review
+tools/ @Macman-1
+
+# CI/CD configuration requires Founder review
+.github/ @Macman-1
+
+# Future: Add team members as they join
+# specs/standards/rust/ @rust-team-lead
+# specs/standards/typescript/ @ts-team-lead
